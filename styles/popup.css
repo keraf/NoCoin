@@ -1,0 +1,24 @@
+body {
+    width: 120px;
+    margin: 10px;
+}
+
+.logo {
+    height: 20px;
+}
+
+.title {
+    display: inline;
+}
+
+.toggle {
+    margin-top: 5px;
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 5px 8px;
+}
+
+.enabled {
+    background-color: red;
+}

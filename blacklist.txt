@@ -1,0 +1,3 @@
+https://coin-hive.com/lib*
+https://coin-hive.com/captcha*
+wss://*.coin-hive.com/proxy*
