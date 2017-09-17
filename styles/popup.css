@@ -1,11 +1,22 @@
+/**
+ * No Coin - Stop coin miners in your browser
+ **
+ * @author      Rafael Keramidas <ker.af>
+ * @version     0.3
+ * @license     MIT
+ * @source      https://github.com/keraf/NoCoin
+ */
+
 body {
     font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-    width: 140px;
+    overflow: auto; 
+    width: 160px;
+    height: auto; /* Doesn't seem work */
     margin: 10px;
 }
 
 .header {
-    margin: 5px 10px;
+    margin: 5px 20px;
 }
 
 .logo {
@@ -35,6 +46,7 @@ body {
     padding: 5px 0;
     font-weight: 600;
     cursor: pointer;
+    margin: 3px 0;
 }
 
 .green {
@@ -42,5 +54,13 @@ body {
 }
 
 .red {
-    background-color: #EE1D36 !important;
+    background-color: #EE1D1D !important;
+}
+
+.whitelist {
+    background-color: #4BC94B !important;
+}
+
+.blacklist {
+    background-color: #E44242 !important;
 }
