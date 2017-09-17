@@ -1,24 +1,46 @@
 body {
-    width: 120px;
+    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    width: 140px;
     margin: 10px;
 }
 
+.header {
+    margin: 5px 10px;
+}
+
 .logo {
-    height: 20px;
+    height: 24px;
+    float: left;
+    margin-top: 4px;
+    margin-right: 4px;
 }
 
 .title {
     display: inline;
+    font-size: 22px;
 }
 
-.toggle {
-    margin-top: 5px;
-    background-color: green;
-    border: none;
+.actions {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.actions li {
+    display: block;
     color: white;
-    padding: 5px 8px;
+    background-color: #808080;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: 600;
+    cursor: pointer;
 }
 
-.enabled {
-    background-color: red;
+.green {
+    background-color: #35B435 !important;
+}
+
+.red {
+    background-color: #EE1D36 !important;
 }

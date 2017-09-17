@@ -2,12 +2,12 @@ $(() => {
 
     const setToggleText = (isEnabled) => {
         if (isEnabled) {
-            $('.toggle').addClass('enabled');
+            $('.toggle').addClass('red').removeClass('green');
         } else {
-            $('.toggle').removeClass('enabled');
+            $('.toggle').addClass('green').removeClass('red');
         }
 
-        $('.toggle').text(isEnabled ? 'Pause NoCoin' : 'Unpause NoCoin');
+        $('.toggle').text(isEnabled ? 'Pause No Coin' : 'Unpause No Coin');
     }
 
     chrome.runtime.sendMessage({ type: 'GET_STATE' }, (response) => {
