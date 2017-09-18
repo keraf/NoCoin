@@ -5,7 +5,9 @@ No coin is a tiny browser extension aiming to block coin miners such as Coinhive
 
 You can grab the extension from: 
 * [Chrome Web Store](https://chrome.google.com/webstore/detail/no-coin/gojamcfopckidlocpkbelmpjcgmbgjcl)
-* [FireFox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/no-coin/)
+* FireFox Add-on (coming soon)
+
+Related article: https://ker.af/stop-coin-mining-in-the-browser-with-no-coin/
 
 ### Why?
 Even though I think using coin mining in browser to monetize content is a great idea, abusing it is not. Some websites are running it during the entire browsing session which results in high consumption of your computers resources. I do believe that using it occasionally such as for the proof of work of a captcha is OK. But for an entire browsing session, the user should have the choice to opt-in which is the aim of this extension.
