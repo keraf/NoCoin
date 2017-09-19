@@ -2,7 +2,7 @@
  * No Coin - Stop coin miners in your browser
  **
  * @author      Arthur Geron <arthur.geron>
- * @version     0.4
+ * @version     0.5
  * @license     GNULGPL3.0
  * @source      https://github.com/arthurgeron/NoCoin
  */
