@@ -30,12 +30,16 @@ const changeToggleIcon = (isEnabled) => {
 };
 
 const getDomain = (url) => {
-    let match = url.match(/:\/\/(.[^/]+)/gi);
-    if (!!match) {
-        return match[0];
-    } else {
-        return '';
+    let regex = /:\/\/(.[^/]+)/gi, output = [];
+    if (!!url) {
+        while (matches = regex.exec(str)) {
+            output.push(matches[1]);
+        }
+        if (output.length>=1) {
+            return output[0];
+        }
     }
+    return '';
 };
 
 const getTimestamp = () => {
