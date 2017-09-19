@@ -32,7 +32,7 @@ const changeToggleIcon = (isEnabled) => {
 const getDomain = (url) => {
     let regex = /:\/\/(.[^/]+)/gi, output = [];
     if (!!url) {
-        while (matches = regex.exec(str)) {
+        while (matches = regex.exec(url)) {
             output.push(matches[1]);
         }
         if (output.length>=1) {
