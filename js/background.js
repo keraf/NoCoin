@@ -1,15 +1,9 @@
 /**
  * No Coin - Stop coin miners in your browser
  **
-<<<<<<< HEAD
  * @author      Arthur Geron <arthur.geron>
  * @version     0.5
  * @license     GNULGPL3.0
-=======
- * @author      Rafael Keramidas <ker.af>
- * @version     0.4
- * @license     MIT
->>>>>>> a6393e2... -Replaced jQuery code with vanilla JS, jQuery is not needed for operations and only makes the loading of the extension slower.
  * @source      https://github.com/arthurgeron/NoCoin
  */
 
