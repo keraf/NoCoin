@@ -1,7 +1,7 @@
 {
     "name": "No Coin",
     "description": "Stop coin miners on the web!",
-    "version": "dev",
+    "version": "0.0.0",
     "permissions": [
         "activeTab",
         "tabs",
@@ -14,11 +14,11 @@
         "persistent": true
     },
     "icons": {
-        "128": "img/logo.png" 
+        "128": "img/logo_enabled.png" 
     },
     "browser_action": {
         "default_title": "No Coin - Stop coin miners on the web.",
-        "default_icon": "img/logo.png",
+        "default_icon": "img/logo_enabled.png",
         "default_popup": "view/popup.html"
     },
     "manifest_version": 2,
