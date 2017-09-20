@@ -5,72 +5,68 @@
  * @license     MIT
  * @source      https://github.com/keraf/NoCoin
  */
-
-$(() => {
-
-    let currentTabId = 0;
-    let whitelisted = false;
-
-    const setToggleText = (isEnabled) => {
-        if (isEnabled) {
-            $('.toggle').addClass('red').removeClass('green');
-        } else {
-            $('.toggle').addClass('green').removeClass('red');
-        }
-
-        $('.toggle').text(isEnabled ? 'Pause No Coin' : 'Unpause No Coin');
-    }
-
-    const showWhitelistButtons = (isVisible) => {
-        if (isVisible) {
-            $('.whitelist').show();
-        } else {
-            $('.whitelist').hide();
-        }
-    }
     
-    const showBlacklistButton = (isVisible) => {
-        if (isVisible) {
-            $('.blacklist').show();
-        } else {
-            $('.blacklist').hide();
-        }
-    }
-    
-    const setWhitelistOptions = (isWhitelisted) => {
-        whitelisted = isWhitelisted;
-        showWhitelistButtons(!isWhitelisted);
-        showBlacklistButton(isWhitelisted);
-    };
+let currentTabId = 0;
+let whitelisted = false;
 
-    $('.toggle').click(() => {
-        chrome.runtime.sendMessage({ type: 'TOGGLE' }, (response) => {
-            setToggleText(response);
-            chrome.tabs.reload(currentTabId);
-        });
+const setToggleButton = (isEnabled) => {
+    const element = document.querySelector('.toggle');
+
+    if ((element.classList.contains('disabled') && isEnabled) || (!element.classList.contains('disabled') && !isEnabled)) {
+        element.classList.toggle('disabled');
+    }
+
+    element.innerText = `${isEnabled ? 'Pause' : 'Unpause' } No Coin`;
+};
+
+const toggleClassVisible = (className, isVisible) => {
+    const elements = document.getElementsByClassName(className);
+
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = isVisible ? 'block': 'none';
+    }
+};
+
+const setWhitelistOptions = (isWhitelisted) => {
+    whitelisted = isWhitelisted;
+    toggleClassVisible('whitelist', !isWhitelisted);
+    toggleClassVisible('blacklist', isWhitelisted);
+};
+
+// Pause/Unpause
+document.querySelector('.toggle').addEventListener('click', () => {
+    chrome.runtime.sendMessage({ type: 'TOGGLE' }, (response) => {
+        setToggleButton(response);
+        chrome.tabs.reload(currentTabId);
     });
+});
 
-    $('.list').click((e) => {
+// Whitelisting
+const listElements = document.getElementsByClassName('list');
+for (let i = 0; i < listElements.length; i++) {
+    listElements[i].addEventListener('click', (e) => {
+        console.log(e);
         chrome.runtime.sendMessage({ 
             type: 'WHITELIST', 
-            time: $(e.target).data('time'),
+            time: e.target.getAttribute('data-time'),
             tabId: currentTabId,
             whitelisted,
         }, (response) => {
+            console.log(response);
             setWhitelistOptions(response);
             chrome.tabs.reload(currentTabId);
         });
     });
+}
 
-    chrome.tabs.query({currentWindow: true, active: true}, tabs => {
-        if (tabs && tabs[0]) {
-            currentTabId = tabs[0].id;
+// Get current state
+chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
+    if (tabs && tabs[0]) {
+        currentTabId = tabs[0].id;
 
-            chrome.runtime.sendMessage({ type: 'GET_STATE', tabId: currentTabId }, (response) => {
-                setToggleText(response.toggle);
-                setWhitelistOptions(response.whitelisted);
-            });
-        }
-    });
-
+        chrome.runtime.sendMessage({ type: 'GET_STATE', tabId: currentTabId }, (response) => {
+            setToggleButton(response.toggle);
+            setWhitelistOptions(response.whitelisted);
+        });
+    }
 });

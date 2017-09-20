@@ -30,12 +30,14 @@ const saveConfig = () => {
 
 const changeToggleIcon = (isEnabled) => {
     chrome.browserAction.setIcon({
-        path: `img/${isEnabled ? 'logo' : 'logo_disabled'}.png`,
+        path: `img/${isEnabled ? 'logo_enabled' : 'logo_disabled'}.png`,
     });
 };
 
 const getDomain = (url) => {
-    return url.match(/:\/\/(.[^/]+)/)[1];
+    const match = url.match(/:\/\/(.[^/]+)/);
+    
+    return match ? match[1] : '';
 };
 
 const getTimestamp = () => {

@@ -48,12 +48,12 @@ body {
     margin: 3px 0;
 }
 
-.green {
-    background-color: #35B435 !important;
+.toggle {
+    background-color: #EE1D1D !important;
 }
 
-.red {
-    background-color: #EE1D1D !important;
+.disabled {
+    background-color: #35B435 !important;
 }
 
 .whitelist {
