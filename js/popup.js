@@ -1,23 +1,81 @@
-$(() => {
+/**
+ * No Coin - Stop coin miners in your browser
+ **
+ * @author      Arthur Geron <arthur.geron>
+ * @version     0.5
+ * @license     GNULGPL3.0
+ * @source      https://github.com/arthurgeron/NoCoin
+ */
 
-    const setToggleText = (isEnabled) => {
-        if (isEnabled) {
-            $('.toggle').addClass('enabled');
-        } else {
-            $('.toggle').removeClass('enabled');
-        }
 
-        $('.toggle').text(isEnabled ? 'Pause NoCoin' : 'Unpause NoCoin');
+let currentTabId = 0, whitelisted = false;
+
+const setToggleTextAndColor = (isEnabled) => {
+    document.querySelector('.toggle').classList.toggle('red');
+    document.querySelector('.toggle').classList.toggle('green');
+    document.querySelector('.toggle').innerText = isEnabled ? 'Pause No Coin' : 'Unpause No Coin';
+}
+
+const showWhitelistButtons = (isVisible) => {
+    if (isVisible) {
+        document.querySelector('.whitelist').style.display = 'block';
+    } else {
+        document.querySelector('.whitelist').style.display = 'none';
     }
+}
 
-    chrome.runtime.sendMessage({ type: 'GET_STATE' }, (response) => {
-        setToggleText(response.toggle);
+const showBlacklistButton = (isVisible) => {
+    if (isVisible) {
+        document.querySelector('.blacklist').style.display = 'block';
+    } else {
+        document.querySelector('.blacklist').style.display = 'none';
+    }
+}
+
+const setWhitelistOptions = (isWhitelisted) => {
+    whitelisted = isWhitelisted === undefined ? whitelisted : isWhitelisted;
+    showWhitelistButtons(!isWhitelisted);
+    showBlacklistButton(isWhitelisted);
+};
+
+document.querySelector('.toggle').addEventListener('click',() => {
+    chrome.runtime.sendMessage({ type: 'TOGGLE' }, (response) => {
+        setToggleTextAndColor(response);
+        chrome.tabs.reload(currentTabId);
     });
+});
 
-    $('.toggle').click(() => {
-        chrome.runtime.sendMessage({ type: 'TOGGLE' }, (response) => {
-            setToggleText(response);
+document.querySelectorAll('.list').forEach((element) => {
+    if (element.options === undefined)
+        element.addEventListener('click',(e) => {
+            setWhitelistOptions();
+            chrome.tabs.reload(currentTabId);
         });
-    });
+    else
+        element.addEventListener('change',(e) => {
+            let selectedTime = e.srcElement.options[e.srcElement.selectedIndex].value;
+            if (selectedTime !== 'None') {
+                chrome.runtime.sendMessage({
+                    type: 'WHITELIST', 
+                    time: e.srcElement.options[e.srcElement.selectedIndex].value,
+                    tabId: currentTabId,
+                    whitelisted,
+                }, (response) => {
+                    setWhitelistOptions(response);
+                    chrome.tabs.reload(currentTabId);
+                    e.srcElement.selectedIndex = 0;
+                });
+            }
+        });
+});
 
+chrome.tabs.query({currentWindow: true, active: true}, tabs => {
+    if (tabs && tabs[0]) {
+        currentTabId = tabs[0].id;
+
+        chrome.runtime.sendMessage({ type: 'GET_STATE', tabId: currentTabId }, (response) => {
+            setToggleTextAndColor(response.toggle);
+            setWhitelistOptions(response.whitelisted);
+        });
+    }
 });

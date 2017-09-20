@@ -1,6 +1,29 @@
+/**
+ * No Coin - Stop coin miners in your browser
+ **
+ * @author      Arthur Geron  <arthur.geron>
+ * @version     0.5
+ * @license     GNULGPL3.0
+ * @source      https://github.com/arthurgeron/NoCoin
+ */
+ @font-face {
+    font-family: 'Somatic'; /*a name to be used later*/
+    src: url('/font/Somatic-Rounded.otf'); /*URL to font*/
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
 body {
     width: 120px;
     margin: 10px;
+}
+
+.header {
+    font-family: "Somatic";
+    margin: 5px 20px;
 }
 
 .logo {
@@ -16,7 +39,22 @@ body {
     background-color: green;
     border: none;
     color: white;
-    padding: 5px 8px;
+    background-color: #808080;
+    text-align: center;
+    padding: 5px 0;
+    cursor: pointer;
+    margin: 14px 0;
+    border-radius: 10px;
+}
+.button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s; 
+}
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.green {
+    background-color: #4CAF50 !important;
 }
 
 .enabled {

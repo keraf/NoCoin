@@ -1,16 +1,26 @@
 <html>
     <head>
         <title>No Coin</title>
-
         <link rel="stylesheet" type="text/css" href="../styles/popup.css" />
-
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/popup.js"></script>
     </head>
     <body>
-        <img src="../img/logo.png" class="logo" />
-        <h1 class="title">No Coin</h1>
-
-        <button class="toggle">Enable No Coin</button>
+        <a href="https://github.com/arthurgeron/NoCoin">
+            <div class="header">
+                <img src="../img/logo.png" class="logo" />
+                <h1 class="title">No Coin</h1>
+            </div>
+        </a>
+        <ul class="actions">
+            <li class="toggle button">Enable No Coin</li>
+            <li class="whitelist button" data-time="1">White list for 
+                <select class="list">
+                    <option value="None"></option>
+                    <option value="1">1 minute</option>
+                    <option value="30">30 minutes</option>
+                    <option value="0">permanently</option>
+                </select></li>
+            <li class="list blacklist button">Remove from white list</li>
+        </ul>
+        <script src="../js/popup.js"></script>    
     </body>
 </html>
