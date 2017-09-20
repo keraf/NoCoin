@@ -1,7 +1,7 @@
 {
     "name": "No Coin",
     "description": "Stop coin miners on the web!",
-    "version": "0.3",
+    "version": "dev",
     "permissions": [
         "activeTab",
         "tabs",
@@ -23,5 +23,10 @@
     },
     "manifest_version": 2,
     "minimum_chrome_version": "55",
-    "author": "Rafael Keramidas"
+    "author": "Rafael Keramidas",
+    "applications": {
+        "gecko": {
+            "id": "{5657c026-efc3-4860-b43b-16e4eaa8a9aa}"
+        }
+    }
 }

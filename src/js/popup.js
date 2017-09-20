@@ -2,7 +2,6 @@
  * No Coin - Stop coin miners in your browser
  **
  * @author      Rafael Keramidas <ker.af>
- * @version     0.3
  * @license     MIT
  * @source      https://github.com/keraf/NoCoin
  */
