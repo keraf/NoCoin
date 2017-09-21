@@ -19,14 +19,8 @@ const setToggleButton = (isEnabled) => {
     element.innerText = `${isEnabled ? 'Pause' : 'Resume' } No Coin`;
 };
 
-<<<<<<< HEAD
-        $('.toggle').text(isEnabled ? 'Pause No Coin' : 'Resume No Coin');
-    }
-=======
 const toggleClassVisible = (className, isVisible) => {
     const elements = document.getElementsByClassName(className);
->>>>>>> d3a017b130324f91ad0e66ea1f10d53d80cf4648
-
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.display = isVisible ? 'block': 'none';
     }
