@@ -132,7 +132,7 @@ if (!config.toggle) {
 }
 
 // Load the blacklist and run the blocker
-const blacklist = 'https://raw.githubusercontent.com/keraf/aaaNoCoin/master/src/blacklist.txt';
+const blacklist = 'https://raw.githubusercontent.com/keraf/NoCoin/master/src/blacklist.txt';
 fetch(blacklist)
     .then(resp => {
         if (resp.status === 200) {
