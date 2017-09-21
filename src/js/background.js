@@ -135,7 +135,7 @@ if (!config.toggle) {
 const blacklist = 'https://raw.githubusercontent.com/keraf/NoCoin/master/src/blacklist.txt';
 fetch(blacklist)
     .then(resp => {
-        if (resp.status === 200) {
+        if (resp.status === 200 && !(resp.text() === "" || resp.text() == null )) {
             resp.text().then(text => runBlocker(text));
         } else {
             runFallbackBlocker();
