@@ -16,12 +16,11 @@ const setToggleButton = (isEnabled) => {
         element.classList.toggle('disabled');
     }
 
-    element.innerText = `${isEnabled ? 'Pause' : 'Unpause' } No Coin`;
+    element.innerText = `${isEnabled ? 'Pause' : 'Resume' } No Coin`;
 };
 
 const toggleClassVisible = (className, isVisible) => {
     const elements = document.getElementsByClassName(className);
-
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.display = isVisible ? 'block': 'none';
     }
