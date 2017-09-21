@@ -1,3 +1,5 @@
 https://coin-hive.com/lib*
 https://coin-hive.com/captcha*
 wss://*.coin-hive.com/proxy*
+https://jsecoin.com/server*
+https://*.jsecoin.com/server*
