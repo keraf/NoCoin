@@ -4,8 +4,8 @@ No coin is a tiny browser extension aiming to block coin miners such as Coinhive
 ![v0.3 demo](https://ker.af/content/images/2017/09/nocoin-v0.3.gif)
 
 You can grab the extension from: 
-* [Chrome Web Store](https://chrome.google.com/webstore/detail/no-coin/gojamcfopckidlocpkbelmpjcgmbgjcl)
-* FireFox Add-on (coming soon)
+
+[![Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/no-coin/gojamcfopckidlocpkbelmpjcgmbgjcl) [![FireFox Add-on](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/en-GB/firefox/addon/no-coin/)
 
 Related article: https://ker.af/stop-coin-mining-in-the-browser-with-no-coin/
 
@@ -25,3 +25,8 @@ There is a wiki with some useful information, make sure to give it a read if you
 * [Found a bug?](https://github.com/keraf/NoCoin/wiki/Bugs)
 * [Contributions](https://github.com/keraf/NoCoin/wiki/Contributions)
 * [Feature/Change Requests](https://github.com/keraf/NoCoin/wiki/Requests)
+
+## Supporting the project
+[![Tips](https://i.imgur.com/W5nargR.png)](https://digitaltipjar.com/keraf)
+
+Click the button above to tip me! Most open source projects have costs and I do currently cover them myself. Those include developer fees, domains, servers and software licenses. Donating would allow me to cover those costs and support further development. It is also a great way to show your appreciation for the project. 
