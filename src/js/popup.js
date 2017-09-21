@@ -44,14 +44,12 @@ document.querySelector('.toggle').addEventListener('click', () => {
 const listElements = document.getElementsByClassName('list');
 for (let i = 0; i < listElements.length; i++) {
     listElements[i].addEventListener('click', (e) => {
-        console.log(e);
         chrome.runtime.sendMessage({ 
             type: 'WHITELIST', 
             time: e.target.getAttribute('data-time'),
             tabId: currentTabId,
             whitelisted,
         }, (response) => {
-            console.log(response);
             setWhitelistOptions(response);
             chrome.tabs.reload(currentTabId);
         });

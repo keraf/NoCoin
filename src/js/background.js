@@ -83,7 +83,34 @@ const removeDomainFromWhitelist = (domain) => {
 
     config.whitelist = config.whitelist.filter(w => w.domain !== domain);
     saveConfig();
-}
+};
+
+const runBlocker = (blacklist) => {
+    const blacklistedUrls = blacklist.split('\n');
+
+    chrome.webRequest.onBeforeRequest.addListener(details => {
+        // Globally paused
+        if (!config.toggle) {
+            return { cancel: false };
+        }
+
+        // Is domain white listed
+        if (isDomainWhitelisted(domains[details.tabId])) {
+            return { cancel: false };
+        }
+
+        return { cancel: true };
+    }, { 
+        urls: blacklistedUrls
+    }, ['blocking']);
+};
+
+const runFallbackBlocker = () => {
+    fetch(chrome.runtime.getURL('blacklist.txt'))
+        .then(resp => {
+            resp.text().then(text => runBlocker(text));
+        });
+};
 
 /**
  * Main
@@ -104,38 +131,18 @@ if (!config.toggle) {
     changeToggleIcon(false);
 }
 
-// Load the blacklist and run the request checker
-const blacklist = chrome.runtime.getURL("blacklist.txt");
+// Load the blacklist and run the blocker
+const blacklist = 'https://raw.githubusercontent.com/keraf/aaaNoCoin/master/src/blacklist.txt';
 fetch(blacklist)
     .then(resp => {
-        resp.text()
-            .then(text => {
-                const blacklistedUrls = text.split('\r\n');
-                
-                chrome.webRequest.onBeforeRequest.addListener(details => {
-                    // Globally paused
-                    if (!config.toggle) {
-                        return { cancel: false };
-                    }
-
-                    // Is domain white listed
-                    if (isDomainWhitelisted(domains[details.tabId])) {
-                        return { cancel: false };
-                    }
-
-                    return { cancel: true };
-                }, { 
-                    urls: blacklistedUrls
-                }, ['blocking']);
-            })
-            .catch(err => {
-                // TODO: Handle this
-                console.log(err);
-            });
+        if (resp.status === 200) {
+            resp.text().then(text => runBlocker(text));
+        } else {
+            runFallbackBlocker();
+        }
     })
     .catch(err => {
-        // TODO: Handle this
-        console.log(err);
+        runFallbackBlocker();
     });
 
 // Communication with the popup and content scripts
