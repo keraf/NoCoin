@@ -103,9 +103,8 @@ if (!config.toggle) {
 }
 
 // Load the blacklist and run the request checker
-//const blacklist = chrome.runtime.getURL("blacklist.txt");
-const blacklistFileURL = "https://raw.githubusercontent.com/keraf/NoCoin/master/src/blacklist.txt";
-fetch(blacklistFileURL)
+const blacklist = chrome.runtime.getURL("blacklist.txt");
+fetch(blacklist)
     .then(resp => {
         resp.text()
             .then(text => {
