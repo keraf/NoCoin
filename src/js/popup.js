@@ -18,7 +18,7 @@ $(() => {
             $('.toggle').addClass('green').removeClass('red');
         }
 
-        $('.toggle').text(isEnabled ? 'Pause No Coin' : 'Resume No Coin');
+        $('.toggle').text(isEnabled ? 'Pause No Coin' : 'Unpause No Coin');
     }
 
     const showWhitelistButtons = (isVisible) => {
