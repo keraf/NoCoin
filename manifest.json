@@ -1,7 +1,7 @@
 {
     "name": "No Coin",
     "description": "Stop coin miners on the web!",
-    "version": "0.4",
+    "version": "0.7",
     "permissions": [
         "activeTab",
         "tabs",
