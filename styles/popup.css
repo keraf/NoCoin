@@ -11,6 +11,19 @@
     src: url('/font/Somatic-Rounded.otf'); /*URL to font*/
 }
 
+select {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: 0px;
+    outline: 0px;
+    text-align-last:center; /*Only works in Chrome/Opera*/
+}
+
+option {
+    width: 100%;
+}
+
 a {
     text-decoration: none;
     color: black;
