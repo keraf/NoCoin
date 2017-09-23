@@ -136,7 +136,13 @@ const blacklist = 'https://raw.githubusercontent.com/keraf/NoCoin/master/src/bla
 fetch(blacklist)
     .then(resp => {
         if (resp.status === 200) {
-            resp.text().then(text => runBlocker(text));
+            resp.text().then((text) => {
+                if (text === '') {
+                    runFallbackBlocker();
+                } else {
+                    runBlocker(text);
+                }
+            });
         } else {
             runFallbackBlocker();
         }
