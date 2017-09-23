@@ -43,12 +43,9 @@ gulp.task('build:manifest', () => {
 
 // Transform the JS files
 gulp.task('build:js', () => {
-    gulp.src([`${srcFolder}/js/background.js`, `${srcFolder}/js/popup.js`])
+    return gulp.src([`${srcFolder}/js/background.js`, `${srcFolder}/js/popup.js`])
         .pipe(babel(babelConfig))
         .pipe(uglify())
-        .pipe(gulp.dest(`${buildFolder}/js`));
-
-    return gulp.src(`${srcFolder}/js/jquery.min.js`)
         .pipe(gulp.dest(`${buildFolder}/js`));
 });
 
