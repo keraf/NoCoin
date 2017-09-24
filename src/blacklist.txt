@@ -1,5 +1,10 @@
-https://coin-hive.com/lib*
-https://coin-hive.com/captcha*
+*://coin-hive.com/lib*
+*://coin-hive.com/captcha*
 wss://*.coin-hive.com/proxy*
-https://jsecoin.com/server*
-https://*.jsecoin.com/server*
+*://jsecoin.com/server*
+*://*.jsecoin.com/server*
+*://static.reasedoper.pw/*
+*://mataharirama.xyz/*
+*://listat.biz/*
+*://lmodr.biz/*
+*://minecrunch.co/web/*
