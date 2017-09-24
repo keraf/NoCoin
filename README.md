@@ -1,7 +1,7 @@
 # No Coin
 No coin is a tiny browser extension aiming to block coin miners such as Coinhive.
 
-![v0.3 demo](https://ker.af/content/images/2017/09/nocoin-v0.3.gif)
+![v0.4 demo](https://ker.af/content/images/2017/09/nocoin-v0.4.gif)
 
 You can grab the extension from: 
 
