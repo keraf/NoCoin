@@ -10,6 +10,18 @@
 
 let currentTabId = 0, whitelisted = false;
 
+const updateCurrentStatus = (message, messageType) => {
+    let defaultMessage = 'Current Status: ';
+    document.getElementById('status').innerText = defaultMessage + message;
+    if (messageType === 'Mining.' || messageType === 'Blocked.') {
+        document.getElementById('status').classList.remove('green');
+        document.getElementById('status').classList.add('red');
+    } else {
+        document.getElementById('status').classList.remove('red');
+        document.getElementById('status').classList.add('green');
+    }
+}
+
 const setToggleTextAndColor = (isEnabled) => {
     document.querySelector('.toggle').classList.toggle('red');
     document.querySelector('.toggle').classList.toggle('green');
@@ -77,5 +89,22 @@ chrome.tabs.query({currentWindow: true, active: true}, tabs => {
             setToggleTextAndColor(response.toggle);
             setWhitelistOptions(response.whitelisted);
         });
+    }
+});
+
+chrome.runtime.sendMessage({ type: 'STATUS' });
+
+chrome.extension.onMessage.addListener((message, sender, sendResponse) => {
+    switch (message.type) {
+        case 'MINING':
+            updateCurrentStatus('Mining.');
+            break;
+        case 'WARNING':
+             updateCurrentStatus('Blocked.');
+            break;
+        case 'OK': {
+             updateCurrentStatus('No miners.');
+            break;
+        }
     }
 });

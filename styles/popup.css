@@ -11,6 +11,19 @@
     src: url('/font/Somatic-Rounded.otf'); /*URL to font*/
 }
 
+#status {
+    background-color: white !important;
+    background-image: none;
+}
+
+#status.green {
+    color: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
+}
+
+#status.red {
+    color: linear-gradient(-180deg, #de4450 0%, #cb2431 90%);
+}
+
 select {
     width: 100%;
     background-color: rgba(0, 0, 0, 0);
