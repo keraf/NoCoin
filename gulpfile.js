@@ -28,8 +28,14 @@ gulp.task('build:copy', () => {
         `${srcFolder}/**/*`, 
         `!${srcFolder}/**/*.js`, 
         `!${srcFolder}/**/*.css`,
+        `!${srcFolder}/view/background.html`,
         `!${srcFolder}/manifest.json`])
         .pipe(gulp.dest(buildFolder));
+});
+
+gulp.task('build:copy-edge', () => {
+    return gulp.src([`${srcFolder}/view/background.html`])
+        .pipe(gulp.dest(`${buildFolder}/view`));
 });
 
 // Transform the manifest
@@ -41,9 +47,47 @@ gulp.task('build:manifest', () => {
         .pipe(gulp.dest(buildFolder));
 });
 
+gulp.task('build:manifest-ff', () => {
+    return gulp.src(`${srcFolder}/manifest.json`)
+        .pipe(jeditor({
+            'version': package.version,
+            'applications': {
+                'gecko': {
+                    'id': '{5657c026-efc3-4860-b43b-16e4eaa8a9aa}',
+                },
+            },
+        }))
+        .pipe(gulp.dest(buildFolder));
+});
+
+gulp.task('build:manifest-edge', () => {
+    return gulp.src(`${srcFolder}/manifest.json`)
+        .pipe(jeditor({
+            'version': package.version,
+            'minimum_edge_version': '33.14281.1000.0',
+            '-ms-preload': {
+                'backgroundScript': 'js/backgroundScriptsAPIBridge.js',
+                'contentScript': 'js/contentScriptsAPIBridge.js',
+            },
+            'background': {
+                'scripts': [],
+                'page': 'view/background.html',
+                'persistent': true
+            },
+        }))
+        .pipe(gulp.dest(buildFolder));
+});
+
 // Transform the JS files
 gulp.task('build:js', () => {
     return gulp.src([`${srcFolder}/js/background.js`, `${srcFolder}/js/popup.js`])
+        .pipe(babel(babelConfig))
+        .pipe(uglify())
+        .pipe(gulp.dest(`${buildFolder}/js`));
+});
+
+gulp.task('build:js-edge', () => {
+    return gulp.src([`${srcFolder}/js/backgroundScriptsAPIBridge.js`, `${srcFolder}/js/contentScriptsAPIBridge.js`])
         .pipe(babel(babelConfig))
         .pipe(uglify())
         .pipe(gulp.dest(`${buildFolder}/js`));
@@ -82,7 +126,8 @@ gulp.task('pack:chromium', () => {
         .pipe(gulp.dest('./dist/chromium'));
 });
 
-gulp.task('default', () => {
+// Target platforms
+gulp.task('chrome', () => {
     runSequence(
         'build:clean',
         'build:copy',
@@ -92,9 +137,60 @@ gulp.task('default', () => {
             'build:css',
         ],
         [
-            'pack:firefox',
             'pack:chrome',
+        ]
+    );
+});
+
+gulp.task('firefox', () => {
+    runSequence(
+        'build:clean',
+        'build:copy',
+        [
+            'build:manifest-ff',
+            'build:js',
+            'build:css',
+        ],
+        [
+            'pack:firefox',
+        ]
+    );
+});
+
+gulp.task('chromium', () => {
+    runSequence(
+        'build:clean',
+        'build:copy',
+        [
+            'build:manifest',
+            'build:js',
+            'build:css',
+        ],
+        [
             'pack:chromium',
         ]
+    );
+});
+
+gulp.task('edge', () => {
+    runSequence(
+        'build:clean',
+        'build:copy',
+        'build:copy-edge',
+        [
+            'build:manifest-edge',
+            'build:js',
+            'build:js-edge',
+            'build:css',
+        ]
+    );
+});
+
+gulp.task('default', () => {
+    runSequence(
+        'chrome',
+        'firefox',
+        'chromium',
+        'edge'
     );
 });
