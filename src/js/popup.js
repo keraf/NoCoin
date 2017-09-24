@@ -8,6 +8,7 @@
     
 let currentTabId = 0;
 let whitelisted = false;
+let domain = '';
 
 const setToggleButton = (isEnabled) => {
     const element = document.querySelector('.toggle');
@@ -15,6 +16,8 @@ const setToggleButton = (isEnabled) => {
     if ((element.classList.contains('disabled') && isEnabled) || (!element.classList.contains('disabled') && !isEnabled)) {
         element.classList.toggle('disabled');
     }
+
+    toggleClassVisible('whitelisting', isEnabled);
 
     element.innerText = `${isEnabled ? 'Pause' : 'Resume' } No Coin`;
 };
@@ -26,21 +29,36 @@ const toggleClassVisible = (className, isVisible) => {
     }
 };
 
-const setWhitelistOptions = (isWhitelisted) => {
+const setWhitelistDisplay = (isWhitelisted) => {
     whitelisted = isWhitelisted;
+    
+    document.querySelector('.whitelisted').innerHTML = `<b>${domain}</b> is currently white listed.`
+
+    toggleClassVisible('dropdown', !isWhitelisted);
     toggleClassVisible('whitelist', !isWhitelisted);
-    toggleClassVisible('blacklist', isWhitelisted);
+    toggleClassVisible('unwhitelist', isWhitelisted);
+    toggleClassVisible('whitelisted', isWhitelisted);
 };
 
-const setDetectedText = (isDetected) => {
-    const element = document.querySelector('.detected');
-
-    if (isDetected) {
-        element.innerText = 'A coin miner has been detected on this page.';
-    } else {
-        element.innerText = 'No coin miner detected on this page.';
-    }
+const setDetectedVisible = (isDetected) => {
+    document.querySelector('.detected').style.display = isDetected ? 'block': 'none';
 };
+
+const setVersion = (version) => {
+    document.querySelector('.version').innerText = version;
+};
+
+const sendWhitelistUpdate = (time) => {
+    chrome.runtime.sendMessage({ 
+        type: 'WHITELIST', 
+        time: time,
+        tabId: currentTabId,
+        whitelisted,
+    }, (response) => {
+        setWhitelistDisplay(response);
+        chrome.tabs.reload(currentTabId);
+    });
+}
 
 // Pause/Unpause
 document.querySelector('.toggle').addEventListener('click', () => {
@@ -50,21 +68,16 @@ document.querySelector('.toggle').addEventListener('click', () => {
     });
 });
 
-// Whitelisting
-const listElements = document.getElementsByClassName('list');
-for (let i = 0; i < listElements.length; i++) {
-    listElements[i].addEventListener('click', (e) => {
-        chrome.runtime.sendMessage({ 
-            type: 'WHITELIST', 
-            time: e.target.getAttribute('data-time'),
-            tabId: currentTabId,
-            whitelisted,
-        }, (response) => {
-            setWhitelistOptions(response);
-            chrome.tabs.reload(currentTabId);
-        });
-    });
-}
+// Whitelist button
+document.querySelector('.whitelist').addEventListener('click', () => {
+    const time = document.querySelector('.dropdown').value;
+    sendWhitelistUpdate(time);
+});
+
+// Un-whitelist button
+document.querySelector('.unwhitelist').addEventListener('click', () => {    
+    sendWhitelistUpdate();
+});
 
 // Get current state
 chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
@@ -72,9 +85,11 @@ chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
         currentTabId = tabs[0].id;
 
         chrome.runtime.sendMessage({ type: 'GET_STATE', tabId: currentTabId }, (response) => {
+            domain = response.domain;
+            setVersion(response.version);
             setToggleButton(response.toggle);
-            setWhitelistOptions(response.whitelisted);
-            setDetectedText(response.detected);
+            setWhitelistDisplay(response.whitelisted);
+            setDetectedVisible(response.detected);
         });
     }
 });

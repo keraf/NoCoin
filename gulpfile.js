@@ -128,7 +128,7 @@ gulp.task('pack:chromium', () => {
 
 // Target platforms
 gulp.task('chrome', () => {
-    runSequence(
+    return runSequence(
         'build:clean',
         'build:copy',
         [
@@ -143,7 +143,7 @@ gulp.task('chrome', () => {
 });
 
 gulp.task('firefox', () => {
-    runSequence(
+    return runSequence(
         'build:clean',
         'build:copy',
         [
@@ -158,7 +158,7 @@ gulp.task('firefox', () => {
 });
 
 gulp.task('chromium', () => {
-    runSequence(
+    return runSequence(
         'build:clean',
         'build:copy',
         [
@@ -173,7 +173,7 @@ gulp.task('chromium', () => {
 });
 
 gulp.task('edge', () => {
-    runSequence(
+    return runSequence(
         'build:clean',
         'build:copy',
         'build:copy-edge',
@@ -187,7 +187,7 @@ gulp.task('edge', () => {
 });
 
 gulp.task('default', () => {
-    runSequence(
+    return runSequence(
         'chrome',
         'firefox',
         'chromium',

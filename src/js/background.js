@@ -95,6 +95,11 @@ const runBlocker = (blacklist) => {
     const blacklistedUrls = blacklist.split('\n');
 
     chrome.webRequest.onBeforeRequest.addListener(details => {
+        chrome.browserAction.setBadgeBackgroundColor({
+            color: [200, 0, 0, 100],
+            tabId: details.tabId,
+        });
+        
         chrome.browserAction.setBadgeText({
             text: '!',
             tabId: details.tabId,
@@ -195,6 +200,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     switch (message.type) {
         case 'GET_STATE':
             sendResponse({
+                version: chrome.runtime.getManifest().version,
                 whitelisted: isDomainWhitelisted(domains[message.tabId]),
                 domain: domains[message.tabId],
                 detected: detected[message.tabId] || false,
