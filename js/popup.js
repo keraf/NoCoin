@@ -2,7 +2,7 @@
  * No Coin - Stop coin miners in your browser
  **
  * @author      Arthur Geron <arthur.geron>
- * @version     0.7
+ * @version     0.9
  * @license     GNULGPL3.0
  * @source      https://github.com/arthurgeron/NoCoin
  */
@@ -13,7 +13,7 @@ let currentTabId = 0, whitelisted = false;
 const updateCurrentStatus = (message, messageType) => {
     let defaultMessage = 'Current Status: ';
     document.getElementById('status').innerText = defaultMessage + message;
-    if (messageType === 'Mining.' || messageType === 'Blocked.') {
+    if (messageType === 'MINING' || messageType === 'BLOCKED') {
         document.getElementById('status').classList.remove('green');
         document.getElementById('status').classList.add('red');
     } else {
@@ -97,13 +97,16 @@ chrome.runtime.sendMessage({ type: 'STATUS' });
 chrome.extension.onMessage.addListener((message, sender, sendResponse) => {
     switch (message.type) {
         case 'MINING':
-            updateCurrentStatus('Mining.');
+            updateCurrentStatus('Mining.', message.type);
             break;
         case 'WARNING':
-             updateCurrentStatus('Blocked.');
+             updateCurrentStatus('Blocked.', message.type);
             break;
+        case 'DISABLED':
+            updateCurrentStatus('Disabled.', message.type);
+           break;
         case 'OK': {
-             updateCurrentStatus('No miners.');
+             updateCurrentStatus('No miners.', message.type);
             break;
         }
     }

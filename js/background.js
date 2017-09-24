@@ -2,7 +2,7 @@
  * No Coin - Stop coin miners in your browser
  **
  * @author      Arthur Geron <arthur.geron>
- * @version     0.7
+ * @version     0.9
  * @license     GNULGPL3.0
  * @source      https://github.com/arthurgeron/NoCoin
  */
@@ -30,9 +30,13 @@ const saveConfig = () => {
 };
 
 const isBlackListed = async (domain) => {
-    console.log('Got called');
     while(blacklistedUrls  === undefined){
-        console.log('Im stuck!');
+    }
+    return blacklistedUrls.indexOf(domain) !== -1; 
+}
+
+const isBlackListedSynchronous = (domain) => {
+    while(blacklistedUrls  === undefined){
     }
     return blacklistedUrls.indexOf(domain) !== -1; 
 }
@@ -78,6 +82,17 @@ const isDomainWhitelisted = (domain) => {
     return false;
 };
 
+const notify = (title, message, icon = '../img/logo.png') => {
+    chrome.notifications.create(
+        {   
+        type: 'basic', 
+        iconUrl: icon, 
+        title: title, 
+        message: message 
+        }
+    );
+}
+
 const addDomainToWhitelist = (domain, time) => {
     if (!domain) return;
 
@@ -104,7 +119,6 @@ const analyseCurrentTab = (domain) => {
     let isWhiteListed;
     let isInBlackList;
     let messageType;
-    console.log('Calling function: ' + domain);
     isBlackListed(domain).then((blackListed) => {
         isWhiteListed = isDomainWhitelisted(domain);
         if (isWhiteListed && blackListed) {
@@ -114,10 +128,28 @@ const analyseCurrentTab = (domain) => {
         } else {
             messageType = 'OK';
         }
-        chrome.runtime.sendMessage({ type: messageType });
+        action(messageType, domain);
     });
 }
 
+
+const action = (messageType, domain) => {
+    let message;
+    switch (messageType)
+    {
+        case 'MINING':
+        message = 'The domain ' + domain + ' is currently mining!';
+        break;
+
+        case 'WARNING':
+        message = 'The domain ' + domain + ' tried to run a miner but was blocked!';
+        break;
+    }
+    if (message !== undefined) {
+        notify(messageType, message);
+    }
+    chrome.runtime.sendMessage({ type: messageType });
+}
 /**
  * Main
  */
@@ -152,10 +184,25 @@ fetch(blacklist)
                 blacklistedUrls = text.split('\r\n');
                 
                 chrome.webRequest.onBeforeRequest.addListener(details => {
+                    let domain = domains[details.tabId];
+                    // Globally paused
                     if (!config.toggle) {
+                        action('DISABLED', domain);
                         return { cancel: false };
                     }
-            
+
+                    // Is domain white listed
+                    if (isDomainWhitelisted(domains[details.tabId])) {
+                        if(isBlackListedSynchronous(domain)) {
+                            action('MINING', domain);   
+                        }
+                        else {
+                            action('OK', domain);
+                        }
+                        return { cancel: false };
+                    }
+
+                    action('WARNING', domain);
                     return { cancel: true };
                 }, { 
                     urls: blacklistedUrls

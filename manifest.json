@@ -1,13 +1,14 @@
 {
     "name": "No Coin",
     "description": "Stop coin miners on the web!",
-    "version": "0.4",
+    "version": "0.9",
     "permissions": [
         "activeTab",
         "tabs",
         "<all_urls>",
         "webRequest",
-        "webRequestBlocking"
+        "webRequestBlocking",
+        "notifications"
     ],
     "background": {
         "scripts": ["js/background.js"],
