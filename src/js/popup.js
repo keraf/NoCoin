@@ -32,6 +32,16 @@ const setWhitelistOptions = (isWhitelisted) => {
     toggleClassVisible('blacklist', isWhitelisted);
 };
 
+const setDetectedText = (isDetected) => {
+    const element = document.querySelector('.detected');
+
+    if (isDetected) {
+        element.innerText = 'A coin miner has been detected on this page.';
+    } else {
+        element.innerText = 'No coin miner detected on this page.';
+    }
+};
+
 // Pause/Unpause
 document.querySelector('.toggle').addEventListener('click', () => {
     chrome.runtime.sendMessage({ type: 'TOGGLE' }, (response) => {
@@ -64,6 +74,7 @@ chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
         chrome.runtime.sendMessage({ type: 'GET_STATE', tabId: currentTabId }, (response) => {
             setToggleButton(response.toggle);
             setWhitelistOptions(response.whitelisted);
+            setDetectedText(response.detected);
         });
     }
 });
