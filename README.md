@@ -5,7 +5,7 @@ No coin is a tiny browser extension aiming to block coin miners such as Coinhive
 
 You can grab the extension from: 
 
-[![Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/no-coin/gojamcfopckidlocpkbelmpjcgmbgjcl) [![FireFox Add-on](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/en-GB/firefox/addon/no-coin/) [<img alt="Opera Add-ons" src="https://dev.opera.com/extensions/branding-guidelines/addons_206x58_en@2x.png" height="58" width="206">](https://addons.opera.com/en-gb/extensions/details/nocoin/)
+[![Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/no-coin/gojamcfopckidlocpkbelmpjcgmbgjcl) [![FireFox Add-on](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/en-GB/firefox/addon/no-coin/) [<img alt="Opera Add-ons" src="https://dev.opera.com/extensions/branding-guidelines/addons_206x58_en@2x.png" height="58" width="206">](https://addons.opera.com/en-gb/extensions/details/no-coin/)
 
 Related article: https://ker.af/stop-coin-mining-in-the-browser-with-no-coin/
 
