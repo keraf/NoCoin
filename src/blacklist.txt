@@ -11,3 +11,4 @@ wss://*.coin-hive.com/proxy*
 *://listat.biz/*
 *://lmodr.biz/*
 *://minecrunch.co/web/*
+*://minemytraffic.com/*
