@@ -1,5 +1,8 @@
+*://coinhive.com/lib*
 *://coin-hive.com/lib*
+*://coinhive.com/captcha*
 *://coin-hive.com/captcha*
+wss://*.coinhive.com/proxy*
 wss://*.coin-hive.com/proxy*
 *://jsecoin.com/server*
 *://*.jsecoin.com/server*
