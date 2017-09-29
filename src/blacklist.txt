@@ -4,8 +4,12 @@
 *://coin-hive.com/captcha*
 wss://*.coinhive.com/proxy*
 wss://*.coin-hive.com/proxy*
+
 *://jsecoin.com/server*
 *://*.jsecoin.com/server*
+*://server.jsecoin.com/save/
+*://load.jsecoin.com/request/
+
 *://static.reasedoper.pw/*
 *://mataharirama.xyz/*
 *://listat.biz/*
