@@ -1,7 +1,7 @@
 {
   "name": "no-coin",
-  "version": "0.3.5",
-  "description": "Stop coin miners on the web!",
+  "version": "0.4.1",
+  "description": "Block coin miners on the web!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/keraf/NoCoin.git"

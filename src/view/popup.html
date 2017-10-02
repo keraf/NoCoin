@@ -7,17 +7,29 @@
         <link rel="stylesheet" type="text/css" href="../styles/popup.css" />
     </head>
     <body>
-        <div class="header">
-            <img src="../img/logo_enabled.png" class="logo" />
-            <h1 class="title">No Coin</h1>
+        <a class="header" href="https://github.com/keraf/NoCoin" target="_blank">
+            <div class="logo">
+                <img src="../img/logo_enabled.png" />
+            </div>
+            <div class="title">
+                <h1>No Coin</h1>
+                <small>Version <span class="version">0.0.0</span></small>
+            </div>
+        </a>
+        <div class="content">
+            <p class="detected box">A coin miner has been detected on this page.</p>
+            <div class="whitelisting">
+                <select class="dropdown">
+                    <option value="1">White list for 1 minute</option>
+                    <option value="30">White list for 30 minutes</option>
+                    <option value="0">White list permanently</option>
+                </select>
+                <button class="btn whitelist">White list</button>
+                <p class="whitelisted box"></p>
+                <button class="btn unwhitelist">Remove from white list</button>
+            </div>
+            <button class="btn toggle"></button>
         </div>
-        <ul class="actions">
-            <li class="toggle">Unpause No Coin</li>
-            <li class="list whitelist" data-time="1">White list for 1 min</li>
-            <li class="list whitelist" data-time="30">White list for 30 min</li>
-            <li class="list whitelist" data-time="0">White list permanently</li>
-            <li class="list blacklist">Remove from white list</li>
-        </ul>
         
         <script src="../js/popup.js"></script>
     </body>

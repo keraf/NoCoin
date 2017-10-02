@@ -1,6 +1,6 @@
 {
     "name": "No Coin",
-    "description": "Stop coin miners on the web!",
+    "description": "Block coin miners on the web!",
     "version": "0.0.0",
     "permissions": [
         "activeTab",
@@ -14,19 +14,15 @@
         "persistent": true
     },
     "icons": {
-        "128": "img/logo_enabled.png" 
+        "128": "img/logo_enabled.png"
     },
     "browser_action": {
-        "default_title": "No Coin - Stop coin miners on the web.",
-        "default_icon": "img/logo_enabled.png",
+        "default_title": "No Coin - Block coin miners on the web.",
+        "default_icon": {
+            "128": "img/logo_enabled.png"
+        },
         "default_popup": "view/popup.html"
     },
     "manifest_version": 2,
-    "minimum_chrome_version": "55",
-    "author": "Rafael Keramidas",
-    "applications": {
-        "gecko": {
-            "id": "{5657c026-efc3-4860-b43b-16e4eaa8a9aa}"
-        }
-    }
+    "author": "Rafael Keramidas"
 }
