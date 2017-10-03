@@ -5,7 +5,10 @@
 wss://*.coinhive.com/proxy*
 wss://*.coin-hive.com/proxy*
 *://jsecoin.com/*
-*://*.jsecoin.com/*
+*://server.jsecoin.com/*
+*://*.server.jsecoin.com/*
+*://load.jsecoin.com/*
+*://*.load.jsecoin.com/*
 *://static.reasedoper.pw/*
 *://mataharirama.xyz/*
 *://listat.biz/*
