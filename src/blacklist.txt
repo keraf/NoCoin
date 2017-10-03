@@ -4,7 +4,8 @@
 *://coin-hive.com/captcha*
 wss://*.coinhive.com/proxy*
 wss://*.coin-hive.com/proxy*
-*://jsecoin.com/*
+*://jsecoin.com/server*
+*://*.jsecoin.com/server*
 *://server.jsecoin.com/*
 *://*.server.jsecoin.com/*
 *://load.jsecoin.com/*
