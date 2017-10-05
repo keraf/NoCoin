@@ -12,3 +12,4 @@ wss://*.coin-hive.com/proxy*
 *://lmodr.biz/*
 *://minecrunch.co/web/*
 *://minemytraffic.com/*
+wss://vxelkrhl.info/*
