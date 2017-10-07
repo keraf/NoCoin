@@ -16,3 +16,5 @@ wss://*.coin-hive.com/proxy*
 *://lmodr.biz/*
 *://minecrunch.co/web/*
 *://minemytraffic.com/*
+*://crypto-loot.com/lib*
+wss://*.crypto-loot.com/proxy*
