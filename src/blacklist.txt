@@ -17,4 +17,4 @@ wss://*.coin-hive.com/proxy*
 *://minecrunch.co/web/*
 *://minemytraffic.com/*
 *://crypto-loot.com/lib*
-wss://*.crypto-loot.com/proxy*
+*://*.2giga.link/hive/*
