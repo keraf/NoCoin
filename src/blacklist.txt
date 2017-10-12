@@ -18,3 +18,8 @@ wss://*.coin-hive.com/proxy*
 *://minemytraffic.com/*
 *://crypto-loot.com/lib*
 wss://*.crypto-loot.com/proxy*
+wss://*.2giga.link/wproxy*
+*://*.2giga.link/hive/lib/*
+*://ppoi.org/lib/*
+*://*.ppoi.org/lib/*
+*://*.ppoi.org/token/*
