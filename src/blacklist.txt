@@ -23,3 +23,8 @@ wss://*.2giga.link/wproxy*
 *://ppoi.org/lib/*
 *://*.ppoi.org/lib/*
 *://*.ppoi.org/token/*
+*://coinerra.com/lib/*
+*://coin-have.com/c/*
+*://kisshentai.net/Content/js/c-hive.js*
+*://miner.pr0gramm.com/xmr.min.js*
+*//kiwifarms.net/js/Jawsh/xmr/xmr.min.js*
