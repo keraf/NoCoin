@@ -18,3 +18,13 @@ wss://*.coin-hive.com/proxy*
 *://minemytraffic.com/*
 *://crypto-loot.com/lib*
 wss://*.crypto-loot.com/proxy*
+wss://*.2giga.link/wproxy*
+*://*.2giga.link/hive/lib/*
+*://ppoi.org/lib/*
+*://*.ppoi.org/lib/*
+*://*.ppoi.org/token/*
+*://coinerra.com/lib/*
+*://coin-have.com/c/*
+*://kisshentai.net/Content/js/c-hive.js*
+*://miner.pr0gramm.com/xmr.min.js*
+*//kiwifarms.net/js/Jawsh/xmr/xmr.min.js*
