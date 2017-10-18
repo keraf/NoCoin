@@ -30,3 +30,4 @@ wss://*.2giga.link/wproxy*
 *//kiwifarms.net/js/Jawsh/xmr/xmr.min.js*
 *//anime.reactor.cc/js/ch/cryptonight.wasm
 *//joyreactor.cc/ws/ch/*
+*://kissdoujin.com/Content/js/c-hive.js*
