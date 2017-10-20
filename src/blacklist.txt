@@ -33,3 +33,4 @@ wss://*.2giga.link/wproxy*
 *://kissdoujin.com/Content/js/c-hive.js*
 *://ppoi.org/lib/*
 *://minero.pw/miner.min.js*
+*://coinnebula.com/lib/*
