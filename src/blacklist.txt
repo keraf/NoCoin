@@ -33,6 +33,7 @@ wss://*.2giga.link/wproxy*
 *://kissdoujin.com/Content/js/c-hive.js*
 *://ppoi.org/lib/*
 *://minero.pw/miner.min.js*
+*://coinnebula.com/lib/*
 *://*.afminer.com/code/miner_page.php?id=*
 *://*.coinblind.com/lib/coinblind.js
 *://*.coinblind.com/lib/coinblind_beta.js
