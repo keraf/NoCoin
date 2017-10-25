@@ -27,6 +27,14 @@ There is a wiki with some useful information, make sure to give it a read if you
 * [Feature/Change Requests](https://github.com/keraf/NoCoin/wiki/Requests)
 
 ## Supporting the project
-[![Tips](https://i.imgur.com/W5nargR.png)](https://digitaltipjar.com/keraf)
+[![Tips](https://i.imgur.com/W5nargR.png)](https://digitaltipjar.com/keraf) [![PayPal](https://i.imgur.com/PsO0orP.png)](https://paypal.me/keraf) 
 
 Click the button above to tip me! Most open source projects have costs and I do currently cover them myself. Those include developer fees, domains, servers and software licenses. Donating would allow me to cover those costs and support further development. It is also a great way to show your appreciation for the project. 
+
+## In the press
+No Coin was mentionned a couple of times in the press, read more about it here: 
+- [Motherboard / Vice News](https://motherboard.vice.com/en_us/article/d3yp9a/someone-made-an-ad-blocker-but-for-cryptocurrency-mining)
+- [WIRED](https://www.wired.com/story/cryptojacking-cryptocurrency-mining-browser)
+- [Gizmodo](https://gizmodo.com/how-to-stop-pirate-bay-and-other-sites-from-hijacking-y-1818549856)
+- [The Next Web](https://thenextweb.com/apps/2017/09/19/cpu-cryptocurrency-miner-blocker/)
+- [LifeHacker](https://lifehacker.com/how-to-stop-sites-from-harvesting-cryptocurrency-from-y-1819712943)
