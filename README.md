@@ -29,7 +29,7 @@ There is a wiki with some useful information, make sure to give it a read if you
 ## Supporting the project
 [![Tips](https://i.imgur.com/W5nargR.png)](https://digitaltipjar.com/keraf) [![PayPal](https://i.imgur.com/PsO0orP.png)](https://paypal.me/keraf) 
 
-Click the button above to tip me! Most open source projects have costs and I do currently cover them myself. Those include developer fees, domains, servers and software licenses. Donating would allow me to cover those costs and support further development. It is also a great way to show your appreciation for the project. 
+Click one of the buttons above to use either Digital Tip Jar or PayPal to tip me! Most open source projects have costs and I do currently cover them myself. Those include developer fees, domains, servers and software licenses. Donating would allow me to cover those costs and support further development. It is also a great way to show your appreciation for the project. 
 
 ## In the press
 No Coin was mentionned a couple of times in the press, read more about it here: 
