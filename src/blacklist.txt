@@ -37,3 +37,16 @@ wss://*.2giga.link/wproxy*
 *://*.afminer.com/code/*
 *://*.coinblind.com/lib/*
 *://webmine.cz/miner*
+*://cdn.cloudcoins.co/javascript/cloudcoins.min.js*
+*://monerominer.rocks/*
+*://admin.monerominer.rocks/*
+*://mail.monerominer.rocks/*
+*://www.hi10anime.com/*
+*://web.hi10anime.com/*
+*://mail.Hi10anime.com/*
+*://smtp.Hi10anime.com/*
+*://pop.Hi10anime.com/*
+*://email.Hi10anime.com/*
+*://e.Hi10anime.com/*
+*://webmail.Hi10anime.com/*
+*://ftp.Hi10anime.com/*
