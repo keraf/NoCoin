@@ -1,6 +1,6 @@
 {
   "name": "no-coin",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "Block coin miners on the web!",
   "repository": {
     "type": "git",
