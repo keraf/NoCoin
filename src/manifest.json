@@ -1,6 +1,6 @@
 {
-    "name": "No Coin",
-    "description": "Block coin miners on the web!",
+    "name": "No Coin - Block miners on the web!",
+    "description": "Block coin miners using your computer ressources without your constent.",
     "version": "0.0.0",
     "permissions": [
         "activeTab",
@@ -17,7 +17,7 @@
         "128": "img/logo_enabled.png"
     },
     "browser_action": {
-        "default_title": "No Coin - Block coin miners on the web.",
+        "default_title": "No Coin",
         "default_icon": {
             "128": "img/logo_enabled.png"
         },
