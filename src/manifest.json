@@ -1,6 +1,6 @@
 {
     "name": "No Coin - Block miners on the web!",
-    "description": "Block coin miners using your computer ressources without your constent.",
+    "description": "Block coin miners using your computer ressources without your consent.",
     "version": "0.0.0",
     "permissions": [
         "activeTab",
