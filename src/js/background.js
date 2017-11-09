@@ -70,6 +70,7 @@ const isDomainWhitelisted = (domain) => {
 
 const addDomainToWhitelist = (domain, time) => {
     if (!domain) return;
+    time = +time || 0;
 
     // Make sure the domain is not already whitelisted before adding it
     if (!isDomainWhitelisted(domain)) {
