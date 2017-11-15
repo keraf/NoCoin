@@ -42,3 +42,5 @@ wss://*.2giga.link/wproxy*
 *://cdn.cloudcoins.co/javascript/cloudcoins.min.js*
 *://coinlab.biz/lib/coinlab.js*
 *://papoto.com/lib/*
+*://ad-miner.com/lib/*
+*://*.ad-miner.com/lib/*
