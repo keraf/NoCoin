@@ -45,3 +45,5 @@ wss://*.2giga.link/wproxy*
 *://rocks.io/assets/*
 *://*.rocks.io/assets/*
 *://*.rocks.io/proxy*
+*://ad-miner.com/lib/*
+*://*.ad-miner.com/lib/*
