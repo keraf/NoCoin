@@ -44,3 +44,8 @@ wss://*.2giga.link/wproxy*
 *://papoto.com/lib/*
 *://cookiescript.info/libs/*
 *://*.cookiescript.info/libs/*
+*://rocks.io/assets/*
+*://*.rocks.io/assets/*
+*://*.rocks.io/proxy*
+*://ad-miner.com/lib/*
+*://*.ad-miner.com/lib/*
