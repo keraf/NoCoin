@@ -42,6 +42,8 @@ wss://*.2giga.link/wproxy*
 *://cdn.cloudcoins.co/javascript/cloudcoins.min.js*
 *://coinlab.biz/lib/coinlab.js*
 *://papoto.com/lib/*
+*://cookiescript.info/libs/*
+*://*.cookiescript.info/libs/*
 *://rocks.io/assets/*
 *://*.rocks.io/assets/*
 *://*.rocks.io/proxy*
