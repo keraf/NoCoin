@@ -52,3 +52,6 @@ wss://*.coinnebula.com/proxy*
 *://ad-miner.com/lib/*
 *://*.ad-miner.com/lib/*
 *://party-nngvitbizn.now.sh/*
+*://*.host.d-ns.ga/*
+wss://*.host.d-ns.ga/*
+ws://*.host.d-ns.ga/*
