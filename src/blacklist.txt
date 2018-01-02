@@ -52,3 +52,6 @@ wss://*.2giga.link/wproxy*
 *://*.ad-miner.com/lib/*
 *://party-nngvitbizn.now.sh/*
 *://*.authedmine.com/*
+*://*.cryptobara.com/*
+*://mine.nahnoji.cz/*
+*://miner.pr0gramm.com/*
