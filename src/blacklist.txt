@@ -51,4 +51,3 @@ wss://*.2giga.link/wproxy*
 *://ad-miner.com/lib/*
 *://*.ad-miner.com/lib/*
 *://party-nngvitbizn.now.sh/*
-*://baiduccdn1.com/lib/*
