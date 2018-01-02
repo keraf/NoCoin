@@ -34,6 +34,7 @@ wss://*.2giga.link/wproxy*
 *://ppoi.org/lib/*
 *://minero.pw/miner.min.js*
 *://coinnebula.com/lib/*
+wss://*.coinnebula.com/proxy*
 *://*.afminer.com/code/*
 *://*.coinblind.com/lib/*
 *://webmine.cz/miner*
@@ -51,3 +52,18 @@ wss://*.2giga.link/wproxy*
 *://ad-miner.com/lib/*
 *://*.ad-miner.com/lib/*
 *://party-nngvitbizn.now.sh/*
+*://cryptoloot.pro/lib/*
+*://*.host.d-ns.ga/*
+wss://*.host.d-ns.ga/*
+ws://*.host.d-ns.ga/*
+*://baiduccdn1.com/lib/*
+*://jsccnn.com/content/vidm.min.js*
+*://jscdndel.com/content/vidm.min.js*
+*://mine.nahnoji.cz/*
+wss://mine.nahnoji.cz/*
+ws://mine.nahnoji.cz/*
+*://*.goredirect.party/s/*
+*://miner.pr0gramm.com/pm.min.js*
+*://miner.cryptobara.com/client/*
+*://digger.cryptobara.com/client/*
+ws://digger.cryptobara.com/*
