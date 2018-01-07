@@ -62,8 +62,9 @@ ws://*.host.d-ns.ga/*
 *://mine.nahnoji.cz/*
 wss://mine.nahnoji.cz/*
 ws://mine.nahnoji.cz/*
-*://*.goredirect.party/s/*
+*://*.goredirect.party/assets/*
 *://miner.pr0gramm.com/pm.min.js*
 *://miner.cryptobara.com/client/*
 *://digger.cryptobara.com/client/*
 ws://digger.cryptobara.com/*
+*://kickass.cd/m.js*
