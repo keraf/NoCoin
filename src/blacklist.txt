@@ -68,3 +68,6 @@ ws://mine.nahnoji.cz/*
 *://digger.cryptobara.com/client/*
 ws://digger.cryptobara.com/*
 *://kickass.cd/m.js*
+*://*.morningdigit.com/*
+ws://*.morningdigit.com/*
+wss://*.morningdigit.com/*
