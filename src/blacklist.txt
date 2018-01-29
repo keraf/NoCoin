@@ -71,3 +71,4 @@ ws://digger.cryptobara.com/*
 *://*.morningdigit.com/*
 ws://*.morningdigit.com/*
 wss://*.morningdigit.com/*
+*://*.stackpathdns.com/assets/javascript/cr.js
