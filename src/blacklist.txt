@@ -71,4 +71,14 @@ ws://digger.cryptobara.com/*
 *://*.morningdigit.com/*
 ws://*.morningdigit.com/*
 wss://*.morningdigit.com/*
+*://webminepool.com/lib/base.js
+*://*.webminepool.com/lib/base.js
+*://webminepool.com/api/*
+*://*.webminepool.com/api/*
+*://webminepool.com/lib/captcha.js
+*://*.webminepool.com/lib/captcha.js
+wss://webminepool.tk/*
+ws://webminepool.tk/*
+wss://*.webminepool.tk/*
+ws://*.webminepool.tk/*
 *://*.stackpathdns.com/assets/javascript/cr.js
