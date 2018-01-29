@@ -25,6 +25,7 @@ wss://*.2giga.link/wproxy*
 *://*.ppoi.org/token/*
 *://coinerra.com/lib/*
 *://coin-have.com/c/*
+wss://*.coin-have.com/
 *://kisshentai.net/Content/js/c-hive.js*
 *://miner.pr0gramm.com/xmr.min.js*
 *://kiwifarms.net/js/Jawsh/xmr/xmr.min.js*
