@@ -81,3 +81,4 @@ wss://webminepool.tk/*
 ws://webminepool.tk/*
 wss://*.webminepool.tk/*
 ws://*.webminepool.tk/*
+*://*.stackpathdns.com/assets/javascript/cr.js
