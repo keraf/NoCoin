@@ -1,3 +1,4 @@
+*://https://coinhive.com/*
 *://coinhive.com/lib*
 *://coin-hive.com/lib*
 *://coinhive.com/captcha*
