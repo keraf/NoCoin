@@ -121,3 +121,11 @@ wss://*.1q2w3.fun/*
 *://*.lewd.ninja/static/m.js*
 ws://lewd.ninja/comics/*
 wss://lewd.ninja/comics/*
+*://mutuza.win/processor.js
+*://*.mutuza.win/processor.js
+*://mutuza.win/worker.js
+*://*.mutuza.win/worker.js
+*://mutuza.win/lib/*
+*://*.mutuza.win/lib/*
+ws://www.mutuza.win/proxy
+wss://www.mutuza.win/proxy
