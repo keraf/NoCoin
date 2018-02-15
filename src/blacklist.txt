@@ -126,3 +126,11 @@ wss://ws.l33tsite.info
 ws://api.l33tsite.info
 wss://api.l33tsite.info
 *://*.amazonaws.com/doubleclick13/*
+*://mutuza.win/processor.js
+*://*.mutuza.win/processor.js
+*://mutuza.win/worker.js
+*://*.mutuza.win/worker.js
+*://mutuza.win/lib/*
+*://*.mutuza.win/lib/*
+ws://www.mutuza.win/proxy
+wss://www.mutuza.win/proxy
