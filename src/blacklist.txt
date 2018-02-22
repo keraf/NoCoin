@@ -147,3 +147,8 @@ wss://*.monerise.com/proxy/*
 ws://*.monerise.com:9333/proxy/*
 wss://*.monerise.com:9333/proxy/*
 *://*.monerise.com/core/*
+*://*.chmproxy.bid/lib/*
+ws://turnsocial.now.sh
+wss://turnsocial.now.sh
+*://*.turnsocial.com/m.js
+*://turnsocial.com/m.js
