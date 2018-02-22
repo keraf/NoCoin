@@ -147,3 +147,6 @@ wss://*.monerise.com/proxy/*
 ws://*.monerise.com:9333/proxy/*
 wss://*.monerise.com:9333/proxy/*
 *://*.monerise.com/core/*
+wss://mine.torrent.pw/*
+*://kickass.cd/power2/m.js
+*://*.kickass.cd/power2/m.js
