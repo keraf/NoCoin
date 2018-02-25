@@ -137,7 +137,6 @@ wss://www.mutuza.win/proxy
 *://*.doubleclick4.xyz/*
 *://*.doubleclick5.xyz/*
 *://*.doubleclick6.xyz/*
-*://chmproxy.bid/lib/*
 *://*.chmproxy.bid/lib/*
 ws://*.zlx.com.br/proxy*
 wss://*.zlx.com.br/proxy*
@@ -147,3 +146,13 @@ wss://*.monerise.com/proxy/*
 ws://*.monerise.com:9333/proxy/*
 wss://*.monerise.com:9333/proxy/*
 *://*.monerise.com/core/*
+*://*.hemnes.win/*
+ws://gtg02.bestsecurepractice.com/proxy
+wss://gtg02.bestsecurepractice.com/proxy
+*://gtg2.bestsecurepractice.com/lib/*
+wss://mine.torrent.pw/*
+*://*.kickass.cd/power2/m.js
+ws://turnsocial.now.sh/*
+wss://turnsocial.now.sh/*
+*://*.turnsocial.com/m.js
+*://*.minescripts.info/*
