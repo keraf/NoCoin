@@ -150,3 +150,8 @@ wss://*.monerise.com:9333/proxy/*
 wss://mine.torrent.pw/*
 *://kickass.cd/power2/m.js
 *://*.kickass.cd/power2/m.js
+*://*.chmproxy.bid/lib/*
+ws://turnsocial.now.sh
+wss://turnsocial.now.sh
+*://*.turnsocial.com/m.js
+*://turnsocial.com/m.js
