@@ -1,0 +1,19 @@
+.header {
+    margin: 5px 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.logo {
+    float: left;
+    margin-right: 8px;
+
+    img {
+        height: 40px;
+    }
+}
+
+.title > h1 {
+    font-size: 18px;
+    margin: 0;
+}

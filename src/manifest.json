@@ -3,12 +3,13 @@
     "description": "Block coin miners using your computer ressources without your consent.",
     "version": "0.0.0",
     "permissions": [
+        "<all_urls>",
         "activeTab",
         "tabs",
-        "<all_urls>",
         "webRequest",
         "webRequestBlocking"
     ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "background": {
         "scripts": ["js/background.js"],
         "persistent": true

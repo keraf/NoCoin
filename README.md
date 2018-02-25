@@ -1,3 +1,6 @@
+# :warning: WIP :construction:
+The version 1.0 is currently a work in progress. This is far from stable and should not be used except for development purposes. Follow me on Twitter ([@iamkeraf](https://www.twitter.com/iamkeraf)) to know when it is ready or simply download it from one of the links below and it wuill automatically updated once released.
+
 # No Coin
 No coin is a tiny browser extension aiming to block coin miners such as Coinhive.
 

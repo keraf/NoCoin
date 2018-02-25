@@ -1,0 +1,22 @@
+.btn {
+    padding: 8px 0;
+    margin: 3px 0;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+
+    &.full {
+        width: 100%;
+    }
+
+    &.red {
+        background-color: #EE1D1D !important;
+    }
+
+    &.green {
+        background-color: #35B435 !important;
+    }
+}
