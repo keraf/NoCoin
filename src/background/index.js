@@ -1,4 +1,8 @@
 /**
+ * TODO: Break out parts of this into smaller JS files
+ */
+
+/**
  * No Coin - Stop coin miners in your browser
  **
  * @author      Rafael Keramidas <ker.af>
@@ -32,12 +36,6 @@ let detected = [];
  */
 const saveConfig = () => {
     localStorage.setItem('config', JSON.stringify(config));
-};
-
-const changeToggleIcon = (isEnabled) => {
-    chrome.browserAction.setIcon({
-        path: `img/${isEnabled ? 'logo_enabled' : 'logo_disabled'}.png`,
-    });
 };
 
 const getDomain = (url) => {
@@ -158,7 +156,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             });
         }
 
-        detected[details.tabId] = false;
+        detected[tabId] = false;
     
         chrome.browserAction.setBadgeText({
             text: '',
@@ -199,6 +197,50 @@ fetch(blacklist)
 // Communication with the popup and content scripts
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     switch (message.type) {
+        /** TODO (rewrite)
+         * INIT - Get initial state
+         * TOGGLE - Toggle extension
+         * CONFIG_GET - Get the current config
+         * CONFIG_SET - Update the config
+         * WHITELIST_GET - Get current whitelist
+         * WHITELIST_ADD - Add to whitelist
+         * WHITELIST_REMOVE - Remove from whitelist
+         * BLACKLIST_GET - Get custom blacklist
+         * BLACKLIST_ADD - Add to custom blacklist
+         * BLACKLIST_REMOVE - Remove from the custom blacklist
+         */
+        case 'INIT': {
+            break;
+        }
+        case 'TOGGLE': {
+            break;
+        }
+        case 'CONFIG_GET': {
+            break;
+        }
+        case 'CONFIG_SET': {
+            break;
+        }
+        case 'WHITELIST_GET': {
+            break;
+        }
+        case 'WHITELIST_ADD': {
+            break;
+        }
+        case 'WHITELIST_REMOVE': {
+            break;
+        }
+        case 'BLACKLIST_GET': {
+            break;
+        }
+        case 'BLACKLIST_ADD': {
+            break;
+        }
+        case 'BLACKLIST_REMOVE': {
+            break;
+        }
+
+        /*
         case 'GET_STATE':
             sendResponse({
                 version: chrome.runtime.getManifest().version,
@@ -217,7 +259,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             break;
         case 'WHITELIST': {
             if (message.whitelisted) {
-                removeDomainFromWhitelist(domains[message.tabId], message.time);
+                removeDomainFromWhitelist(domains[message.tabId]);
             } else {
                 addDomainToWhitelist(domains[message.tabId], message.time);
             }
@@ -225,5 +267,24 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             sendResponse(!message.whitelisted);
             break;
         }
+        case 'GET_WHITELIST': {
+            sendResponse(config.whitelist);
+            break;
+        }
+        case 'WHITELIST_ADD': {
+            const domain = getDomain(message.url);
+            addDomainToWhitelist(domain, message.time);
+
+            sendResponse({
+                domain,
+                expiration: getTimestamp() + (message.time * 60),
+            });
+            break;
+        }
+        case 'WHITELIST_REMOVE': {
+            removeDomainFromWhitelist(message.domain);
+            break;
+        }
+        */
     }
 });

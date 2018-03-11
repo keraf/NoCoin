@@ -1,5 +1,7 @@
 import { Component } from 'inferno';
 
+import Box from 'shared/components/Box';
+
 class General extends Component {
 
     /** TODO
@@ -17,7 +19,16 @@ class General extends Component {
 
         return (
             <div>
-                <p>General</p>
+                <h1>General</h1>
+                <p>Enable/Disable notifications</p>
+                <p>Use local blacklist</p>
+                <p>Blacklist refresh interval</p>
+                
+                <h2>About</h2>
+                <Box>
+                    No Coin is a free and open source (MIT Licensed) browser extension developed by <a href={'https://ker.af/'} target={'_blank'}>Rafael (Keraf) Keramidas</a>. If you like this extension, please consider donating to keep the project alive.
+                    <b>PayPal button</b>
+                </Box>
             </div>
         );
 

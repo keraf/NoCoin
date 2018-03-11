@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const environment = process.env.NODE_ENV || 'development';
 
@@ -19,7 +20,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'src', 'js'),
-		filename: '[name].js',
+        filename: '[name].js',
     },
     module: {
         rules: [
@@ -51,4 +52,7 @@ module.exports = {
             },
         ],
     },
+    plugins: [
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Don't import the locales, at least not yet...
+    ],
 };

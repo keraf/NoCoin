@@ -9,13 +9,13 @@ const zip = require('gulp-zip');
 const del = require('del');
 const runSequence = require('run-sequence');
 
-const package = JSON.parse(fs.readFileSync('./package.json'));
+const pkg = JSON.parse(fs.readFileSync('./package.json'));
 const srcFolder = './src';
 const buildFolder = './dist/tmp';
 const babelConfig = {
     presets: ['env'],
     plugins: ['transform-object-rest-spread'],
-}
+};
 
 // Clean old files
 gulp.task('build:clean', () => {
@@ -42,7 +42,7 @@ gulp.task('build:copy-edge', () => {
 gulp.task('build:manifest', () => {
     return gulp.src(`${srcFolder}/manifest.json`)
         .pipe(jeditor({
-            'version': package.version,
+            'version': pkg.version,
         }))
         .pipe(gulp.dest(buildFolder));
 });
@@ -50,7 +50,7 @@ gulp.task('build:manifest', () => {
 gulp.task('build:manifest-ff', () => {
     return gulp.src(`${srcFolder}/manifest.json`)
         .pipe(jeditor({
-            'version': package.version,
+            'version': pkg.version,
             'applications': {
                 'gecko': {
                     'id': '{5657c026-efc3-4860-b43b-16e4eaa8a9aa}',
@@ -63,7 +63,7 @@ gulp.task('build:manifest-ff', () => {
 gulp.task('build:manifest-edge', () => {
     return gulp.src(`${srcFolder}/manifest.json`)
         .pipe(jeditor({
-            'version': package.version,
+            'version': pkg.version,
             'minimum_edge_version': '33.14281.1000.0',
             '-ms-preload': {
                 'backgroundScript': 'js/backgroundScriptsAPIBridge.js',
@@ -103,14 +103,14 @@ gulp.task('build:css', () => {
 // Zip it for FF
 gulp.task('pack:firefox', () => {
     return gulp.src(`${buildFolder}/**/*`)
-        .pipe(zip(`nocoin-${package.version}.xpi`))
+        .pipe(zip(`nocoin-${pkg.version}.xpi`))
         .pipe(gulp.dest('./dist/firefox'));
 });
 
 // Zip it for Chrome
 gulp.task('pack:chrome', () => {
     return gulp.src(`${buildFolder}/**/*`)
-        .pipe(zip(`nocoin-${package.version}.zip`))
+        .pipe(zip(`nocoin-${pkg.version}.zip`))
         .pipe(gulp.dest('./dist/chrome'));
 });
 
@@ -119,7 +119,7 @@ gulp.task('pack:chromium', () => {
     return gulp.src(`${buildFolder}`)
         .pipe(crx({
             privateKey: fs.readFileSync('./certs/key.pem', 'utf8'),
-            filename: `nocoin-${package.version}.crx`,
+            filename: `nocoin-${pkg.version}.crx`,
             codebase: 'https://nocoin.ker.af/',
             updateXmlFilename: 'update.xml'
         }))

@@ -1,0 +1,31 @@
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #d8d8d8;
+    box-shadow: 2px 2px 10px 0px;
+
+    li {
+        float: left;
+    
+        a {
+            color: #000;
+            font-size: 15px;
+            font-weight: 600;
+            display: block;
+            text-align: center;
+            padding: 8px 12px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background-color: #cccccc;
+        }
+
+        .active {
+            text-decoration: underline;
+            background-color: #cccccc;
+        }
+    }
+}

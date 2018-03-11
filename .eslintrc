@@ -1,0 +1,20 @@
+{
+    "parser": "babel-eslint",
+    "plugins": [
+      "inferno"
+    ],
+    "extends": ["eslint:recommended", "plugin:inferno/recommended"],
+    "rules": {
+      "indent": ["error", 4, { "SwitchCase": 1 }],
+      "linebreak-style": [0, "windows"],
+      "inferno/prop-types": 0
+    },
+    "globals": {
+        "chrome": true,
+        "document": true,
+        "process": true,
+        "module": true,
+        "require": true,
+        "__dirname": true
+    }
+  }

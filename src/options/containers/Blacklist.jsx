@@ -9,6 +9,19 @@ class Blacklist extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            domains: [],
+            domain: '',
+        };
+    }
+
+    onDomainChange = (e) => {
+        this.setState({ domain: e.target.value });
+    }
+
+    onAddToWhitelist = () => {
+        // Add to whitelist
     }
 
     render() {

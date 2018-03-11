@@ -3,7 +3,7 @@ import { render, Component } from 'inferno';
 import Header from './Header';
 import Box from 'shared/components/Box';
 import Button from 'shared/components/Button';
-import Dropdown from 'shared/components/Dropdown';
+import List from 'shared/components/List';
 
 import './App.scss';
 
@@ -91,7 +91,7 @@ class Main extends Component {
                         <div>
                             { !whitelisted ? 
                                 <div>
-                                    <Dropdown full onChange={this.onWhitelistTimeChange} value={whitelistTime} options={[
+                                    <List full onChange={this.onWhitelistTimeChange} value={whitelistTime} options={[
                                         { value: '1', name: 'Whist list for 1 minute' },
                                         { value: '30', name: 'Whist list for 30 minutes' },
                                         { value: '0', name: 'Whist list permanently' },
