@@ -29,7 +29,7 @@ class Whitelist extends Component {
     }
 
     loadWhitelist = () => {
-        chrome.runtime.sendMessage({ type: 'GET_WHITELIST' }, (response) => {
+        chrome.runtime.sendMessage({ type: 'WHITELIST_GET' }, (response) => {
             this.setState({
                 domains: response,
             });

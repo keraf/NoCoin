@@ -1,8 +1,4 @@
 /**
- * TODO: Break out parts of this into smaller JS files
- */
-
-/**
  * No Coin - Stop coin miners in your browser
  **
  * @author      Rafael Keramidas <ker.af>
@@ -10,141 +6,19 @@
  * @source      https://github.com/keraf/NoCoin
  */
 
-// Config
-const defaultConfig = {
-    toggle: true,
-    whitelist: [{
-        domain: 'cnhv.co',
-        expiration: 0,
-    }],
-};
+import Config from 'background/config.js';
+import Whitelist from 'background/whitelist.js';
+import { urlToDomain } from 'shared/helpers/domain.js';
 
-const localConfig = JSON.parse(localStorage.getItem('config'));
-let config = {
-    ...defaultConfig,
-    ...localConfig,
-};
+const config = new Config();
+const whitelist = new Whitelist();
 
-/**
- * Variables
- */
-let domains = [];
-let detected = [];
-
-/**
- * Functions
- */
-const saveConfig = () => {
-    localStorage.setItem('config', JSON.stringify(config));
-};
-
-const getDomain = (url) => {
-    const match = url.match(/:\/\/(.[^/]+)/);
-    
-    return match ? match[1] : '';
-};
-
-const getTimestamp = () => {
-    return Math.floor(Date.now() / 1000);
-};
-
-const isDomainWhitelisted = (domain) => {
-    if (!domain) return false;
-
-    const domainInfo = config.whitelist.find(w => w.domain === domain);
-
-    if (domainInfo) {
-        if (domainInfo.expiration !== 0 && domainInfo.expiration <= getTimestamp()) {
-            removeDomainFromWhitelist(domain);
-
-            return false;
-        }
-
-        return true;
-    }
-
-    return false;
-};
-
-const addDomainToWhitelist = (domain, time) => {
-    if (!domain) return;
-    time = +time || 0;
-
-    // Make sure the domain is not already whitelisted before adding it
-    if (!isDomainWhitelisted(domain)) {
-        config.whitelist = [
-            ...config.whitelist,
-            {
-                domain: domain,
-                expiration: time === 0 ? 0 : getTimestamp() + (time * 60),
-            },
-        ];
-        saveConfig();
-    }
-};
-
-const removeDomainFromWhitelist = (domain) => {
-    if (!domain) return;
-
-    config.whitelist = config.whitelist.filter(w => w.domain !== domain);
-    saveConfig();
-};
-
-const runBlocker = (blacklist) => {
-    const blacklistedUrls = blacklist.split('\n');
-
-    chrome.webRequest.onBeforeRequest.addListener(details => {
-        chrome.browserAction.setBadgeBackgroundColor({
-            color: [200, 0, 0, 100],
-            tabId: details.tabId,
-        });
-        
-        chrome.browserAction.setBadgeText({
-            text: '!',
-            tabId: details.tabId,
-        });
-
-        detected[details.tabId] = true;
-
-        // Globally paused
-        if (!config.toggle) {
-            return { cancel: false };
-        }
-
-        // Is domain white listed
-        if (isDomainWhitelisted(domains[details.tabId])) {
-            chrome.browserAction.setIcon({
-                path: 'img/logo_enabled_whitelisted.png',
-                tabId: details.tabId,
-            });
-
-            return { cancel: false };
-        }
-
-        chrome.browserAction.setIcon({
-            path: 'img/logo_enabled_blocked.png',
-            tabId: details.tabId,
-        });
-
-        return { cancel: true };
-    }, { 
-        urls: blacklistedUrls
-    }, ['blocking']);
-};
-
-const runFallbackBlocker = () => {
-    fetch(chrome.runtime.getURL('blacklist.txt'))
-        .then(resp => {
-            resp.text().then(text => runBlocker(text));
-        });
-};
-
-/**
- * Main
- */
+let domains = []; // domains during navigation for a tabId
 
 // Updating domain for synchronous checking in onBeforeRequest
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    domains[tabId] = urlToDomain(tab.url);
+    /*
     domains[tabId] = getDomain(tab.url);
     
     // Set back to normal when navigating
@@ -163,36 +37,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             tabId,
         });
     }
+    */
 });
-
-chrome.tabs.onRemoved.addListener((tabId) => {
-    delete domains[tabId];
-});
-
-// Run with the right icon
-if (!config.toggle) {
-    changeToggleIcon(false);
-}
-
-// Load the blacklist and run the blocker
-const blacklist = 'https://raw.githubusercontent.com/keraf/NoCoin/master/src/blacklist.txt';
-fetch(blacklist)
-    .then(resp => {
-        if (resp.status !== 200) {
-            throw 'HTTP Error';
-        }
-
-        resp.text().then((text) => {
-            if (text === '') {
-                throw 'Empty response';
-            }
-
-            runBlocker(text);
-        });
-    })
-    .catch(err => {
-        runFallbackBlocker();
-    });
 
 // Communication with the popup and content scripts
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -210,9 +56,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
          * BLACKLIST_REMOVE - Remove from the custom blacklist
          */
         case 'INIT': {
+            sendResponse({
+                ...config.currentConfig,
+                domain: domains[message.tabId],
+                whitelisted: whitelist.isWhitelisted(domains[message.tabId]),
+            });
             break;
         }
         case 'TOGGLE': {
+            const { enabled } = config.currentConfig;
+
+            config.setConfig({ enabled: !enabled });
+            sendResponse(!enabled);
             break;
         }
         case 'CONFIG_GET': {
@@ -222,12 +77,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             break;
         }
         case 'WHITELIST_GET': {
+            sendResponse(config.currentConfig.whitelist);
             break;
         }
         case 'WHITELIST_ADD': {
+            whitelist.addToWhitelist(domains[message.tabId], message.time);
             break;
         }
         case 'WHITELIST_REMOVE': {
+            whitelist.removeFromWhitelist(domains[message.tabId]);
             break;
         }
         case 'BLACKLIST_GET': {

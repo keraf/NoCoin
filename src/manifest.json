@@ -5,6 +5,7 @@
     "permissions": [
         "<all_urls>",
         "activeTab",
+        "storage",
         "tabs",
         "webRequest",
         "webRequestBlocking"

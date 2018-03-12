@@ -20,6 +20,8 @@ class General extends Component {
         return (
             <div>
                 <h1>General</h1>
+                <Box>HELP TEXT.</Box>
+                
                 <p>Enable/Disable notifications</p>
                 <p>Use local blacklist</p>
                 <p>Blacklist refresh interval</p>

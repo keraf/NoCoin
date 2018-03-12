@@ -7,6 +7,8 @@ import List from 'shared/components/List';
 
 import './App.scss';
 
+const version = chrome.runtime.getManifest().version;
+
 class Main extends Component {
 
     constructor(props) {
@@ -17,8 +19,7 @@ class Main extends Component {
         // State
         this.state = {
             domain: '',
-            version: '0.0.0',
-            toggle: false,
+            enabled: false,
             whitelisted: false,
             detected: false,
             whitelistTime: 1,
@@ -29,7 +30,7 @@ class Main extends Component {
             if (tabs && tabs[0]) {
                 this.currentTabId = tabs[0].id;
         
-                chrome.runtime.sendMessage({ type: 'GET_STATE', tabId: this.currentTabId }, (response) => {
+                chrome.runtime.sendMessage({ type: 'INIT', tabId: this.currentTabId }, (response) => {
                     this.setState({
                         ...response,   
                     });
@@ -43,22 +44,23 @@ class Main extends Component {
             chrome.tabs.reload(this.currentTabId);
             
             this.setState({
-                toggle: !this.state.toggle,
+                enabled: response,
             });
         });
     }
 
     whistelist = () => {
+        const type = this.state.whitelisted ? 'WHITELIST_REMOVE' : 'WHITELIST_ADD';
+
         chrome.runtime.sendMessage({ 
-            type: 'WHITELIST', 
+            type, 
             time: this.state.whitelistTime,
             tabId: this.currentTabId,
-            whitelisted: this.state.whitelisted,
-        }, (response) => {
+        }, () => {
             chrome.tabs.reload(this.currentTabId);
 
             this.setState({
-                whitelisted: response,
+                whitelisted: !this.state.whitelisted,
             });
         });
     }
@@ -74,8 +76,7 @@ class Main extends Component {
         const { 
             detected,
             domain,
-            toggle,
-            version,
+            enabled,
             whitelisted,
             whitelistTime,
         } = this.state;
@@ -87,7 +88,7 @@ class Main extends Component {
                     { detected && 
                         <Box>A coin miner has been detected on this page.</Box>
                     }
-                    { toggle && 
+                    { enabled && 
                         <div>
                             { !whitelisted ? 
                                 <div>
@@ -98,7 +99,7 @@ class Main extends Component {
                                     ]} />
                                     <Button full type={'green'} onClick={this.whistelist}>White list</Button>
                                 </div>
-                            :
+                                :
                                 <div>
                                     <Box><b>{ domain }</b> is currently white listed.</Box>
                                     <Button full type={'red'} onClick={this.whistelist}>Remove form white list</Button>
@@ -106,7 +107,7 @@ class Main extends Component {
                             }
                         </div>
                     }
-                    <Button full type={toggle ? 'red' : 'green'} onClick={this.toggleExtension}>{toggle ? 'Pause' : 'Resume'} No Coin</Button>
+                    <Button full type={enabled ? 'red' : 'green'} onClick={this.toggleExtension}>{enabled ? 'Pause' : 'Resume'} No Coin</Button>
                 </div>
             </div>
         );

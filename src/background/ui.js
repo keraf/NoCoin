@@ -25,4 +25,4 @@ const setWarning = (tabId, isWhitelisted = false) => {
 export {
     setIconColored,
     setWarning,
-}
+};
