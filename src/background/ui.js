@@ -9,7 +9,7 @@ const setIconColored = (color = true) => {
 };
 
 const setWarning = (tabId, isWhitelisted = false) => {
-    const color = isWhitelisted ? [200, 0, 0, 100] : [200, 0, 0, 100]; // Colors - Green : Red
+    const color = isWhitelisted ? [34, 139, 34, 100] : [200, 0, 0, 100]; // Colors - Green : Red
 
     chrome.browserAction.setBadgeBackgroundColor({
         color,
@@ -17,7 +17,14 @@ const setWarning = (tabId, isWhitelisted = false) => {
     });
     
     chrome.browserAction.setBadgeText({
-        text: '⚠️',
+        text: '!',
+        tabId: tabId,
+    });
+};
+
+const resetWarning = (tabId) => {
+    chrome.browserAction.setBadgeText({
+        text: '',
         tabId: tabId,
     });
 };
@@ -25,4 +32,5 @@ const setWarning = (tabId, isWhitelisted = false) => {
 export {
     setIconColored,
     setWarning,
+    resetWarning,
 };

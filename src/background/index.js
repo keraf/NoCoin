@@ -8,59 +8,80 @@
 
 import Config from 'background/config.js';
 import Whitelist from 'background/whitelist.js';
+import Blacklist from 'background/blacklist.js';
+import * as ui from 'background/ui.js';
 import { urlToDomain } from 'shared/helpers/domain.js';
 
 const config = new Config();
 const whitelist = new Whitelist();
+const blacklist = new Blacklist();
 
 let domains = []; // domains during navigation for a tabId
 
 const requestChecker = (details) => {
+    const { tabId } = details;
     const currentConfig = config.currentConfig;
+
+    const isWhitelisted = whitelist.isWhitelisted(domains[tabId]);
+    ui.setWarning(tabId, isWhitelisted);
 
     if (!currentConfig.enabled) {
         return { cancel: false };
     }
 
-    // Check against the blacklist
+    if (isWhitelisted) {
+        return { cancel: false };
+    }
 
-    return { cancel: false };
+    return { cancel: true };
 };
 
 const runRequestChecker = () => {
-    // Get blacklist URL
-    const urls = [];
+    const urls = blacklist.fullBlacklist;
 
-    if(chrome.webRequest.onBeforeRequest.hasListener(requestChecker)){
+    if (chrome.webRequest.onBeforeRequest.hasListener(requestChecker)) {
         chrome.webRequest.onBeforeRequest.removeListener(requestChecker);
     }
 
     chrome.webRequest.onBeforeRequest.addListener(requestChecker, { urls }, ['blocking']);
 };
 
+// First run
+config.getConfig()
+    .then(config => {
+        // Set the icon color to its enabled status (color = enabled)
+        ui.setIconColored(config.enabled);
+
+        // Load the blacklist (with fallback to local if failed)
+        blacklist.updateBlacklist()
+            .then(() => {
+                runRequestChecker();
+            })
+            .catch(() => {
+                blacklist.updateBlacklist(true)
+                    .then(() => {
+                        runRequestChecker();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            });
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
 // Updating domain for synchronous checking in onBeforeRequest
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     domains[tabId] = urlToDomain(tab.url);
-    /*
-    domains[tabId] = getDomain(tab.url);
-    
-    // Set back to normal when navigating
+
     if (changeInfo === 'loading') {
         if (config.toggle) {
-            chrome.browserAction.setIcon({
-                path: 'img/logo_enabled.png',
-                tabId,
-            });
+            ui.setIconColored(true);
         }
-
-        detected[tabId] = false;
     
-        chrome.browserAction.setBadgeText({
-            text: '',
-            tabId,
-        });
+        ui.resetWarning();
     }
-    */
 });
 
 // Communication with the popup and content scripts
@@ -89,6 +110,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         case 'TOGGLE': {
             const { enabled } = config.currentConfig;
 
+            ui.setIconColored(!enabled);
             config.setConfig({ enabled: !enabled });
             sendResponse(!enabled);
             break;
@@ -105,6 +127,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
         case 'WHITELIST_ADD': {
             whitelist.addToWhitelist(domains[message.tabId], message.time);
+            
+            sendResponse({
+                domain: domains[message.tabId],
+                time: message.time,
+            });
             break;
         }
         case 'WHITELIST_REMOVE': {
@@ -112,60 +139,22 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             break;
         }
         case 'BLACKLIST_GET': {
+            sendResponse({
+                customBlacklist: blacklist.customBlacklist,
+            });
             break;
         }
         case 'BLACKLIST_ADD': {
+            blacklist.addToCustomBlacklist(message.url);
+            
+            sendResponse({
+                url: message.url,
+            });
             break;
         }
         case 'BLACKLIST_REMOVE': {
+            blacklist.removeFromCustomBlacklist(message.url);
             break;
         }
-
-        /*
-        case 'GET_STATE':
-            sendResponse({
-                version: chrome.runtime.getManifest().version,
-                whitelisted: isDomainWhitelisted(domains[message.tabId]),
-                domain: domains[message.tabId],
-                detected: detected[message.tabId] || false,
-                toggle: config.toggle,
-            });
-            break;
-        case 'TOGGLE':
-            config.toggle = !config.toggle;
-            saveConfig();
-
-            changeToggleIcon(config.toggle);
-            sendResponse(config.toggle);
-            break;
-        case 'WHITELIST': {
-            if (message.whitelisted) {
-                removeDomainFromWhitelist(domains[message.tabId]);
-            } else {
-                addDomainToWhitelist(domains[message.tabId], message.time);
-            }
-
-            sendResponse(!message.whitelisted);
-            break;
-        }
-        case 'GET_WHITELIST': {
-            sendResponse(config.whitelist);
-            break;
-        }
-        case 'WHITELIST_ADD': {
-            const domain = getDomain(message.url);
-            addDomainToWhitelist(domain, message.time);
-
-            sendResponse({
-                domain,
-                expiration: getTimestamp() + (message.time * 60),
-            });
-            break;
-        }
-        case 'WHITELIST_REMOVE': {
-            removeDomainFromWhitelist(message.domain);
-            break;
-        }
-        */
     }
 });

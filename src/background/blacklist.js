@@ -16,41 +16,70 @@ class Blacklist {
     _customBlacklist = [];
 
     constructor() {
-        // Load the custom blacklist from the config
+        config.getConfig()
+            .then(items => {
+                this._customBlacklist = items.customBlacklist;
+            })
+            .catch(err => {
+                // TODO: Do something with this error
+            });
     }
 
     // Getter for full blacklist (merging standard with custom)
-    get blacklist() {
+    get fullBlacklist() {
         return [
             ...this._blacklist,
             ...this._customBlacklist,
         ];
     }
 
-    updateBlacklist = () => {
-        return this._fetchBlacklist(config.currentConfig.blacklistRemote);
+    get baseBlacklist() {
+        return this._blacklist;
+    }
+
+    get customBlacklist() {
+        return this._customBlacklist;
+    }
+
+    updateBlacklist = (forceLocal) => {
+        return this._fetchBlacklist(forceLocal ? false : config.currentConfig.blacklistRemote);
     }
 
     // Check entire blacklist
     isInBlacklist = (url) => {
-        const blacklist = this.getBlacklist();
+        const blacklist = this.fullBlacklist;
+
+        return blacklist.find(b => b === url) !== undefined;
     }
 
     // Is in custom blacklist
     isInCustomBlacklist = (url) => {
-    
-    }
+        const blacklist = this.customBlacklist;
 
-    getCustomBlacklist = () => {
-
+        return blacklist.find(b => b === url) !== undefined;
     }
 
     addToCustomBlacklist = (url) => {
-
+        if (!this.isInCustomBlacklist(url)) {
+            this._customBlacklist = [
+                ...this._customBlacklist,
+                url,
+            ];
+    
+            config.setConfig({
+                customBlacklist: this._customBlacklist,
+            });
+        }
     }
 
     removeFromCustomBlacklist = (url) => {
-
+        if (this.isInCustomBlacklist(url)) {
+            this._customBlacklist = this._customBlacklist.filter(b => b !== url);
+    
+            config.setConfig({
+                customBlacklist: this._customBlacklist,
+            });
+        }
     }
 
     _fetchBlacklist = (remote = true) => {
@@ -77,14 +106,11 @@ class Blacklist {
                     return resolve(blacklist);
                 })
                 .catch(err => {
-                    // Fallback to local blacklist if the HTTP one can't be loaded
-                    if (remote) {
-                        return this._fetchBlacklist(false);
-                    }
-
                     return reject(err);
                 });
         });
     }
 
 }
+
+export default Blacklist;

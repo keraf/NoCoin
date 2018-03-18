@@ -5,7 +5,7 @@ const environment = process.env.NODE_ENV || 'development';
 
 module.exports = {
     mode: environment,
-    devtool: environment === 'development' ? 'source-map' : null,
+    devtool: environment === 'development' ? 'source-map' : false,
     entry: {
         background: path.join(__dirname, 'src', 'background', 'index.js'),
         options: path.join(__dirname, 'src', 'options', 'App.jsx'),
