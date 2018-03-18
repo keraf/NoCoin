@@ -15,6 +15,29 @@ const whitelist = new Whitelist();
 
 let domains = []; // domains during navigation for a tabId
 
+const requestChecker = (details) => {
+    const currentConfig = config.currentConfig;
+
+    if (!currentConfig.enabled) {
+        return { cancel: false };
+    }
+
+    // Check against the blacklist
+
+    return { cancel: false };
+};
+
+const runRequestChecker = () => {
+    // Get blacklist URL
+    const urls = [];
+
+    if(chrome.webRequest.onBeforeRequest.hasListener(requestChecker)){
+        chrome.webRequest.onBeforeRequest.removeListener(requestChecker);
+    }
+
+    chrome.webRequest.onBeforeRequest.addListener(requestChecker, { urls }, ['blocking']);
+};
+
 // Updating domain for synchronous checking in onBeforeRequest
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     domains[tabId] = urlToDomain(tab.url);
