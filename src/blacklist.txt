@@ -156,3 +156,4 @@ ws://turnsocial.now.sh/*
 wss://turnsocial.now.sh/*
 *://*.turnsocial.com/m.js
 *://*.minescripts.info/*
+*://*.jqcdn.download/*
