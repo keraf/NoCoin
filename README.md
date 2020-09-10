@@ -1,3 +1,6 @@
+:warning: Discontinued project :warning:
+> As most browsers have built-in measures to prevent coin mining nowadays and there are more up-to-date lists (see https://github.com/hoshsadiq/adblock-nocoin-list) that work with popular adblockers, this project is not relevant anymore. It served its purpose; protecting users from unwanted coin mining on the web while there was no available alternative, and kickstarting more coin miner blocking intiatives. Thank you for supporting NoCoin and surf safe!
+
 # No Coin
 No coin is a tiny browser extension aiming to block coin miners such as Coinhive.
 
